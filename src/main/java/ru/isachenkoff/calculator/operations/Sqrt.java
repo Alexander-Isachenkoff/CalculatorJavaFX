@@ -2,8 +2,8 @@ package ru.isachenkoff.calculator.operations;
 
 public class Sqrt extends UnaryOperation {
     
-    public Sqrt(double operand) {
-        super("√", operand);
+    public Sqrt() {
+        super("√");
     }
     
     @Override

@@ -45,7 +45,7 @@ public class OperandBuilder {
     
     public double getOperandDouble() {
         try {
-            return (double) AbstractOperation.DECIMAL_FORMAT.parse(operand.getValue());
+            return AbstractOperation.DECIMAL_FORMAT.parse(operand.getValue()).doubleValue();
         } catch (ParseException e) {
             e.printStackTrace();
             return 0;

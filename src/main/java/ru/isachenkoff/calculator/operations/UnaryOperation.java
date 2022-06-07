@@ -2,11 +2,10 @@ package ru.isachenkoff.calculator.operations;
 
 public abstract class UnaryOperation extends AbstractOperation {
     
-    private final double operand;
+    private double operand;
     
-    public UnaryOperation(String sign, double operand) {
+    public UnaryOperation(String sign) {
         super(sign);
-        this.operand = operand;
     }
     
     @Override
@@ -22,4 +21,8 @@ public abstract class UnaryOperation extends AbstractOperation {
     }
     
     abstract double apply(double operand);
+    
+    public void setOperand(double operand) {
+        this.operand = operand;
+    }
 }

@@ -2,7 +2,7 @@ package ru.isachenkoff.calculator.operations;
 
 public abstract class BinaryOperation extends AbstractOperation {
     
-    private final Double firstOperand;
+    private Double firstOperand;
     private Double secondOperand;
     
     public BinaryOperation(String sign, Double firstOperand, Double secondOperand) {
@@ -31,6 +31,10 @@ public abstract class BinaryOperation extends AbstractOperation {
     
     public boolean hasSecondOperand() {
         return secondOperand != null;
+    }
+    
+    public void setFirstOperand(Double firstOperand) {
+        this.firstOperand = firstOperand;
     }
     
     public Double getFirstOperand() {

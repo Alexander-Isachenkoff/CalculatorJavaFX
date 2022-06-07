@@ -8,6 +8,7 @@ import javafx.scene.control.TextField;
 import ru.isachenkoff.calculator.operations.*;
 
 import java.net.URL;
+import java.util.Optional;
 import java.util.ResourceBundle;
 
 public class MainController implements Initializable {
@@ -44,16 +45,12 @@ public class MainController implements Initializable {
     
     @FXML
     private void onAddition() {
-        if (operation == null) {
-            operation = new Addition(operandBuilder.getOperandDouble(), null);
-            statementField.setText(operation.prepareStatement());
-            operandBuilder.setNewValue();
-        }
+        createOperation(OperationFactory.OperationType.ADDITION);
     }
     
     @FXML
     private void onSqrt() {
-    
+        createOperation(OperationFactory.OperationType.SQRT);
     }
     
     @FXML
@@ -66,14 +63,34 @@ public class MainController implements Initializable {
         evaluate();
     }
     
+    private void createOperation(OperationFactory.OperationType type) {
+        if (operation == null) {
+            Optional<Operation> optionalOperation = OperationFactory.createOperation(type);
+            if (optionalOperation.isPresent()) {
+                operation = optionalOperation.get();
+                if (operation instanceof BinaryOperation binaryOperation) {
+                    binaryOperation.setFirstOperand(operandBuilder.getOperandDouble());
+                    statementField.setText(binaryOperation.prepareStatement());
+                    operandBuilder.setNewValue();
+                }
+                if (operation instanceof UnaryOperation unaryOperation) {
+                    unaryOperation.setOperand(operandBuilder.getOperandDouble());
+                    evaluate();
+                }
+            } else {
+                System.out.println("Operation type " + type.name() + " is not implemented");
+            }
+        }
+    }
+    
     private void evaluate() {
         if (operation instanceof BinaryOperation binaryOperation) {
             binaryOperation.setSecondOperand(operandBuilder.getOperandDouble());
-            CalculationResult result = operation.calc();
-            statementField.setText(result.getStatement());
-            inputField.setText(AbstractOperation.format(result.getResult()));
-            operandBuilder.setNewValue();
-            operation = null;
         }
+        CalculationResult result = operation.calc();
+        statementField.setText(result.getStatement());
+        inputField.setText(AbstractOperation.format(result.getResult()));
+        operandBuilder.setNewValue();
+        operation = null;
     }
 }
