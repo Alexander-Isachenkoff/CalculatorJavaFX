@@ -154,6 +154,10 @@ public class MainController implements Initializable {
         operandBuilder.setValue(result.getResult());
         operandBuilder.setNewValue();
         operation = null;
+        logCalcResult(result);
+    }
+    
+    private void logCalcResult(CalculationResult result) {
         log.add(0, result);
         if (log.size() > MAX_LOG_SIZE) {
             log.remove(MAX_LOG_SIZE);
