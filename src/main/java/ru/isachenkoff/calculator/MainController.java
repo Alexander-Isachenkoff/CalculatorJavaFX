@@ -34,6 +34,9 @@ public class MainController implements Initializable {
         Button button = (Button) mouseEvent.getSource();
         String text = button.getText();
         operandBuilder.addNumber(text);
+        if (operation == null) {
+            statementField.clear();
+        }
     }
     
     @FXML
@@ -83,25 +86,49 @@ public class MainController implements Initializable {
     
     @FXML
     private void onEquals() {
-        evaluate();
+        if (operation != null) {
+            evaluate();
+        }
+    }
+    
+    @FXML
+    private void onClear() {
+        statementField.clear();
+        operation = null;
     }
     
     private void onOperation(OperationType type) {
         if (operation == null) {
-            Optional<Operation> optionalOperation = OperationType.createOperation(type);
-            if (optionalOperation.isPresent()) {
-                operation = optionalOperation.get();
-                if (operation instanceof BinaryOperation binaryOperation) {
-                    binaryOperation.setFirstOperand(operandBuilder.getOperandDouble());
-                    statementField.setText(binaryOperation.prepareStatement());
-                    operandBuilder.setNewValue();
-                }
-                if (operation instanceof UnaryOperation unaryOperation) {
-                    unaryOperation.setOperand(operandBuilder.getOperandDouble());
-                    evaluate();
+            addNewOperation(type);
+        } else {
+            if (operandBuilder.isNewValue()) {
+                Optional<Operation> optionalOperation = OperationType.createOperation(type);
+                if (optionalOperation.isPresent()) {
+                    if (optionalOperation.get() instanceof BinaryOperation binaryOperation) {
+                        binaryOperation.setFirstOperand(((BinaryOperation) operation).getFirstOperand());
+                        statementField.setText(binaryOperation.prepareStatement());
+                        operation = binaryOperation;
+                    }
                 }
             } else {
-                System.out.println("Operation type " + type.name() + " is not implemented");
+                evaluate();
+                addNewOperation(type);
+            }
+        }
+    }
+    
+    private void addNewOperation(OperationType type) {
+        Optional<Operation> optionalOperation = OperationType.createOperation(type);
+        if (optionalOperation.isPresent()) {
+            operation = optionalOperation.get();
+            if (operation instanceof BinaryOperation binaryOperation) {
+                binaryOperation.setFirstOperand(operandBuilder.getOperandDouble());
+                statementField.setText(binaryOperation.prepareStatement());
+                operandBuilder.setNewValue();
+            }
+            if (operation instanceof UnaryOperation unaryOperation) {
+                unaryOperation.setOperand(operandBuilder.getOperandDouble());
+                evaluate();
             }
         }
     }
@@ -112,7 +139,7 @@ public class MainController implements Initializable {
         }
         CalculationResult result = operation.calc();
         statementField.setText(result.getStatement());
-        inputField.setText(AbstractOperation.format(result.getResult()));
+        operandBuilder.setValue(result.getResult());
         operandBuilder.setNewValue();
         operation = null;
         log.add(result);

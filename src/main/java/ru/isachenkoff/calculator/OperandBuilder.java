@@ -22,7 +22,7 @@ public class OperandBuilder {
     }
     
     public void addPoint() {
-        if (!operand.getValue().contains(POINT)) {
+        if (!newValue && !operand.getValue().contains(POINT)) {
             operand.setValue(operand.getValue() + POINT);
         }
     }
@@ -43,6 +43,10 @@ public class OperandBuilder {
         return operand;
     }
     
+    public void setValue(double value) {
+        operand.setValue(AbstractOperation.format(value));
+    }
+    
     public double getOperandDouble() {
         try {
             return AbstractOperation.DECIMAL_FORMAT.parse(operand.getValue()).doubleValue();
@@ -54,5 +58,9 @@ public class OperandBuilder {
     
     public void setNewValue() {
         newValue = true;
+    }
+    
+    public boolean isNewValue() {
+        return newValue;
     }
 }
