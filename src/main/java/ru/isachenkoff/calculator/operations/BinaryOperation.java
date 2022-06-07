@@ -2,10 +2,10 @@ package ru.isachenkoff.calculator.operations;
 
 public abstract class BinaryOperation extends AbstractOperation {
     
-    private final double firstOperand;
-    private final double secondOperand;
+    private final Double firstOperand;
+    private Double secondOperand;
     
-    public BinaryOperation(String sign, double firstOperand, double secondOperand) {
+    public BinaryOperation(String sign, Double firstOperand, Double secondOperand) {
         super(sign);
         this.firstOperand = firstOperand;
         this.secondOperand = secondOperand;
@@ -13,7 +13,11 @@ public abstract class BinaryOperation extends AbstractOperation {
     
     @Override
     public String prepareStatement() {
-        return format(firstOperand) + getSign() + format(secondOperand) + "=";
+        String statement = format(firstOperand) + getSign();
+        if (hasSecondOperand()) {
+            statement += format(secondOperand) + "=";
+        }
+        return statement;
     }
     
     @Override
@@ -24,4 +28,20 @@ public abstract class BinaryOperation extends AbstractOperation {
     }
     
     abstract double apply(double firstOperand, double secondOperand);
+    
+    public boolean hasSecondOperand() {
+        return secondOperand != null;
+    }
+    
+    public Double getFirstOperand() {
+        return firstOperand;
+    }
+    
+    public Double getSecondOperand() {
+        return secondOperand;
+    }
+    
+    public void setSecondOperand(Double secondOperand) {
+        this.secondOperand = secondOperand;
+    }
 }

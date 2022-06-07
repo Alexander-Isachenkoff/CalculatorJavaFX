@@ -13,7 +13,7 @@ public class AdditionTest {
     
     @Test
     void calc() {
-        Addition addition = new Addition(5, 10);
+        Addition addition = new Addition(5.0, 10.0);
         CalculationResult calc = addition.calc();
         assertEquals("5+10=", calc.getStatement());
         assertEquals(15, calc.getResult());

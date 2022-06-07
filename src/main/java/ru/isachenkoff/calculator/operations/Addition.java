@@ -2,7 +2,7 @@ package ru.isachenkoff.calculator.operations;
 
 public class Addition extends BinaryOperation {
     
-    public Addition(double firstOperand, double secondOperand) {
+    public Addition(Double firstOperand, Double secondOperand) {
         super("+", firstOperand, secondOperand);
     }
     

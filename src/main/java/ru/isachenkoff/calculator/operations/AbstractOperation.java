@@ -5,7 +5,7 @@ import java.text.DecimalFormat;
 public abstract class AbstractOperation implements Operation {
     
     private final String sign;
-    private final static DecimalFormat DECIMAL_FORMAT = new DecimalFormat("#.###############");
+    public final static DecimalFormat DECIMAL_FORMAT = new DecimalFormat("#.###############");
     
     public AbstractOperation(String sign) {
         this.sign = sign;
@@ -16,7 +16,7 @@ public abstract class AbstractOperation implements Operation {
         return sign;
     }
     
-    static String format(double value) {
+    public static String format(double value) {
         return DECIMAL_FORMAT.format(value);
     }
 }
