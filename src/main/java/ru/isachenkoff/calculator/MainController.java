@@ -5,6 +5,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
+import javafx.scene.layout.VBox;
 import ru.isachenkoff.calculator.operations.*;
 
 import java.net.URL;
@@ -15,6 +16,10 @@ import java.util.ResourceBundle;
 
 public class MainController implements Initializable {
     
+    @FXML
+    private VBox mainVbox;
+    @FXML
+    private VBox logPane;
     @FXML
     private TextField statementField;
     @FXML
@@ -27,6 +32,8 @@ public class MainController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         inputField.textProperty().bindBidirectional(operandBuilder.getOperand());
+        logPane.setManaged(false);
+        logPane.setVisible(false);
     }
     
     @FXML
@@ -143,5 +150,17 @@ public class MainController implements Initializable {
         operandBuilder.setNewValue();
         operation = null;
         log.add(result);
+    }
+    
+    @FXML
+    private void onLog() {
+        double originalPrefWidth = mainVbox.getPrefWidth();
+        double originalPrefHeight = mainVbox.getPrefHeight();
+        mainVbox.setPrefSize(mainVbox.getWidth(), mainVbox.getHeight());
+        boolean visible = logPane.isVisible();
+        logPane.setVisible(!visible);
+        logPane.setManaged(!visible);
+        logPane.getScene().getWindow().sizeToScene();
+        mainVbox.setPrefSize(originalPrefWidth, originalPrefHeight);
     }
 }

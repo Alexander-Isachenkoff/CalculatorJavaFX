@@ -26,3 +26,7 @@
 .equals-button:pressed {
     -fx-background-color: #777;
 }
+
+.log-button {
+    -fx-background-color: none;
+}
