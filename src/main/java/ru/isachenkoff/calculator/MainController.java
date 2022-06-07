@@ -13,8 +13,10 @@ import ru.isachenkoff.calculator.data.CalculationResultDAO;
 import ru.isachenkoff.calculator.operations.*;
 
 import java.net.URL;
+import java.util.List;
 import java.util.Optional;
 import java.util.ResourceBundle;
+import java.util.stream.Collectors;
 
 public class MainController implements Initializable {
     
@@ -33,13 +35,22 @@ public class MainController implements Initializable {
     private Operation operation;
     private final ObservableList<CalculationResult> log = FXCollections.observableArrayList();
     private static final int MAX_LOG_SIZE = 10;
-    private CalculationResultDAO dao = new CalculationResultDAO();
+    private final CalculationResultDAO dao = new CalculationResultDAO();
     
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         inputField.textProperty().bindBidirectional(operandBuilder.getOperand());
         logPane.setManaged(false);
         logPane.setVisible(false);
+        loadCalculationHistory();
+    }
+    
+    private void loadCalculationHistory() {
+        List<CalculationResult> calculationResults = dao.selectAll().stream()
+                .sorted((o1, o2) -> Long.compare(o2.getId(), o1.getId()))
+                .limit(MAX_LOG_SIZE)
+                .collect(Collectors.toList());
+        log.setAll(FXCollections.observableArrayList(calculationResults));
         logList.setItems(log);
     }
     
