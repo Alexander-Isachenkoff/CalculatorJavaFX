@@ -16,4 +16,9 @@ public class CalculationResult {
     public String getStatement() {
         return statement;
     }
+    
+    @Override
+    public String toString() {
+        return statement + AbstractOperation.format(result);
+    }
 }

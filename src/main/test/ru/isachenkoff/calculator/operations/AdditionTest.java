@@ -17,7 +17,7 @@ public class AdditionTest {
     @Test
     void calc() {
         Addition addition = new Addition();
-        addition.setFirstOperand(3.0);
+        addition.setFirstOperand(5.0);
         addition.setSecondOperand(10.0);
         CalculationResult calc = addition.calc();
         assertEquals("5+10=", calc.getStatement());

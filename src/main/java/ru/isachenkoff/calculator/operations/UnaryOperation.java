@@ -9,7 +9,7 @@ public abstract class UnaryOperation extends AbstractOperation {
         return switch (getSignPlace()) {
             case BEFORE -> getSign() + format(operand);
             case AFTER -> format(operand) + getSign();
-        };
+        } + "=";
     }
     
     @Override

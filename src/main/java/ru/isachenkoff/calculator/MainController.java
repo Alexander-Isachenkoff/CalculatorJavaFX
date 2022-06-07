@@ -1,21 +1,24 @@
 package ru.isachenkoff.calculator;
 
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
+import javafx.scene.control.ListView;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.VBox;
 import ru.isachenkoff.calculator.operations.*;
 
 import java.net.URL;
-import java.util.ArrayList;
-import java.util.List;
 import java.util.Optional;
 import java.util.ResourceBundle;
 
 public class MainController implements Initializable {
     
+    @FXML
+    private ListView<CalculationResult> logList;
     @FXML
     private VBox mainVbox;
     @FXML
@@ -27,13 +30,15 @@ public class MainController implements Initializable {
     
     private final OperandBuilder operandBuilder = new OperandBuilder();
     private Operation operation;
-    private final List<CalculationResult> log = new ArrayList<>();
+    private final ObservableList<CalculationResult> log = FXCollections.observableArrayList();
+    private static final int MAX_LOG_SIZE = 10;
     
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         inputField.textProperty().bindBidirectional(operandBuilder.getOperand());
         logPane.setManaged(false);
         logPane.setVisible(false);
+        logList.setItems(log);
     }
     
     @FXML
@@ -149,7 +154,10 @@ public class MainController implements Initializable {
         operandBuilder.setValue(result.getResult());
         operandBuilder.setNewValue();
         operation = null;
-        log.add(result);
+        log.add(0, result);
+        if (log.size() > MAX_LOG_SIZE) {
+            log.remove(MAX_LOG_SIZE);
+        }
     }
     
     @FXML
