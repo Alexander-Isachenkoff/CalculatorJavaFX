@@ -14,3 +14,15 @@
 .number-button {
     -fx-background-color: white;
 }
+
+.equals-button {
+    -fx-background-color: #bbb;
+}
+
+.equals-button:hover {
+    -fx-background-color: #999;
+}
+
+.equals-button:pressed {
+    -fx-background-color: #777;
+}
