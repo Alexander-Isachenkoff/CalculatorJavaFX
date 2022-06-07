@@ -8,14 +8,17 @@ public class AdditionTest {
     
     @Test
     void prepareStatement() {
-        Addition addition = new Addition(3.0, null);
+        Addition addition = new Addition();
+        addition.setFirstOperand(3.0);
         String statement = addition.prepareStatement();
         assertEquals("3+", statement);
     }
     
     @Test
     void calc() {
-        Addition addition = new Addition(5.0, 10.0);
+        Addition addition = new Addition();
+        addition.setFirstOperand(3.0);
+        addition.setSecondOperand(10.0);
         CalculationResult calc = addition.calc();
         assertEquals("5+10=", calc.getStatement());
         assertEquals(15, calc.getResult());
@@ -23,7 +26,9 @@ public class AdditionTest {
     
     @Test
     void calc_2() {
-        Addition addition = new Addition(5.5, 6.5);
+        Addition addition = new Addition();
+        addition.setFirstOperand(5.5);
+        addition.setSecondOperand(6.5);
         CalculationResult calc = addition.calc();
         assertEquals("5,5+6,5=", calc.getStatement());
         assertEquals(12, calc.getResult());

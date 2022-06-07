@@ -5,8 +5,11 @@ public abstract class BinaryOperation extends AbstractOperation {
     private Double firstOperand;
     private Double secondOperand;
     
-    public BinaryOperation(String sign, Double firstOperand, Double secondOperand) {
-        super(sign);
+    public BinaryOperation() {
+        this(null, null);
+    }
+    
+    public BinaryOperation(Double firstOperand, Double secondOperand) {
         this.firstOperand = firstOperand;
         this.secondOperand = secondOperand;
     }

@@ -4,13 +4,12 @@ public abstract class UnaryOperation extends AbstractOperation {
     
     private double operand;
     
-    public UnaryOperation(String sign) {
-        super(sign);
-    }
-    
     @Override
     public String prepareStatement() {
-        return getSign() + format(operand);
+        return switch (getSignPlace()) {
+            case BEFORE -> getSign() + format(operand);
+            case AFTER -> format(operand) + getSign();
+        };
     }
     
     @Override
@@ -24,5 +23,11 @@ public abstract class UnaryOperation extends AbstractOperation {
     
     public void setOperand(double operand) {
         this.operand = operand;
+    }
+    
+    abstract SignPlace getSignPlace();
+    
+    enum SignPlace {
+        BEFORE, AFTER
     }
 }

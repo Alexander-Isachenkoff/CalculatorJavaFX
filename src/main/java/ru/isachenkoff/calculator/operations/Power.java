@@ -1,14 +1,15 @@
 package ru.isachenkoff.calculator.operations;
 
-public class Addition extends BinaryOperation {
+public class Power extends BinaryOperation {
     
     @Override
     double apply(double firstOperand, double secondOperand) {
-        return firstOperand + secondOperand;
+        return Math.pow(firstOperand, secondOperand);
     }
     
     @Override
     public String getSign() {
-        return "+";
+        return "^";
     }
+    
 }

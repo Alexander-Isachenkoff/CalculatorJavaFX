@@ -45,17 +45,37 @@ public class MainController implements Initializable {
     
     @FXML
     private void onAddition() {
-        createOperation(OperationFactory.OperationType.ADDITION);
+        createOperation(OperationType.ADDITION);
+    }
+    
+    @FXML
+    private void onSubtraction() {
+        createOperation(OperationType.SUBTRACTION);
+    }
+    
+    @FXML
+    private void onProduct() {
+        createOperation(OperationType.PRODUCT);
+    }
+    
+    @FXML
+    private void onDivision() {
+        createOperation(OperationType.DIVISION);
+    }
+    
+    @FXML
+    private void onPower() {
+        createOperation(OperationType.POWER);
     }
     
     @FXML
     private void onSqrt() {
-        createOperation(OperationFactory.OperationType.SQRT);
+        createOperation(OperationType.SQRT);
     }
     
     @FXML
-    private void onOperation(ActionEvent mouseEvent) {
-
+    private void onSquare() {
+        createOperation(OperationType.SQUARE);
     }
     
     @FXML
@@ -63,9 +83,9 @@ public class MainController implements Initializable {
         evaluate();
     }
     
-    private void createOperation(OperationFactory.OperationType type) {
+    private void createOperation(OperationType type) {
         if (operation == null) {
-            Optional<Operation> optionalOperation = OperationFactory.createOperation(type);
+            Optional<Operation> optionalOperation = OperationType.createOperation(type);
             if (optionalOperation.isPresent()) {
                 operation = optionalOperation.get();
                 if (operation instanceof BinaryOperation binaryOperation) {
