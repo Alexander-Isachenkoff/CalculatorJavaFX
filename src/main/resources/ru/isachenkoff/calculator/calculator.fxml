@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.geometry.Insets?>
+<?import javafx.scene.Cursor?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.ColumnConstraints?>
@@ -26,15 +27,18 @@
       </HBox>
       <VBox VBox.vgrow="ALWAYS">
          <children>
-            <TextField fx:id="statementField" alignment="CENTER_RIGHT" maxHeight="1.7976931348623157E308" prefHeight="0.0" prefWidth="312.0" style="-fx-background-color: none; -fx-padding: 0; -fx-text-fill: #666;">
+            <TextField fx:id="statementField" alignment="CENTER_RIGHT" editable="false" maxHeight="1.7976931348623157E308" prefHeight="0.0" prefWidth="312.0" style="-fx-background-color: none; -fx-padding: 0; -fx-text-fill: #666;">
                <font>
                   <Font size="14.0" />
                </font>
                <VBox.margin>
                   <Insets bottom="5.0" />
                </VBox.margin>
+               <cursor>
+                  <Cursor fx:constant="DEFAULT" />
+               </cursor>
             </TextField>
-            <TextField fx:id="inputField" alignment="CENTER_RIGHT" maxHeight="1.7976931348623157E308" style="-fx-padding: 0; -fx-background-color: none;">
+            <TextField fx:id="inputField" alignment="CENTER_RIGHT" editable="false" maxHeight="1.7976931348623157E308" style="-fx-padding: 0; -fx-background-color: none;">
                <font>
                   <Font name="Arial" size="48.0" />
                </font>

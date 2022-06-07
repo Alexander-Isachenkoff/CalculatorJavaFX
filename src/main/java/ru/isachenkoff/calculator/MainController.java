@@ -8,6 +8,8 @@ import javafx.scene.control.TextField;
 import ru.isachenkoff.calculator.operations.*;
 
 import java.net.URL;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Optional;
 import java.util.ResourceBundle;
 
@@ -20,6 +22,7 @@ public class MainController implements Initializable {
     
     private final OperandBuilder operandBuilder = new OperandBuilder();
     private Operation operation;
+    private final List<CalculationResult> log = new ArrayList<>();
     
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
@@ -45,37 +48,37 @@ public class MainController implements Initializable {
     
     @FXML
     private void onAddition() {
-        createOperation(OperationType.ADDITION);
+        onOperation(OperationType.ADDITION);
     }
     
     @FXML
     private void onSubtraction() {
-        createOperation(OperationType.SUBTRACTION);
+        onOperation(OperationType.SUBTRACTION);
     }
     
     @FXML
     private void onProduct() {
-        createOperation(OperationType.PRODUCT);
+        onOperation(OperationType.PRODUCT);
     }
     
     @FXML
     private void onDivision() {
-        createOperation(OperationType.DIVISION);
+        onOperation(OperationType.DIVISION);
     }
     
     @FXML
     private void onPower() {
-        createOperation(OperationType.POWER);
+        onOperation(OperationType.POWER);
     }
     
     @FXML
     private void onSqrt() {
-        createOperation(OperationType.SQRT);
+        onOperation(OperationType.SQRT);
     }
     
     @FXML
     private void onSquare() {
-        createOperation(OperationType.SQUARE);
+        onOperation(OperationType.SQUARE);
     }
     
     @FXML
@@ -83,7 +86,7 @@ public class MainController implements Initializable {
         evaluate();
     }
     
-    private void createOperation(OperationType type) {
+    private void onOperation(OperationType type) {
         if (operation == null) {
             Optional<Operation> optionalOperation = OperationType.createOperation(type);
             if (optionalOperation.isPresent()) {
@@ -112,5 +115,6 @@ public class MainController implements Initializable {
         inputField.setText(AbstractOperation.format(result.getResult()));
         operandBuilder.setNewValue();
         operation = null;
+        log.add(result);
     }
 }
