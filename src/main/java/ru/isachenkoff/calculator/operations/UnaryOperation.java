@@ -6,10 +6,16 @@ public abstract class UnaryOperation extends AbstractOperation {
     
     @Override
     public String prepareStatement() {
-        return switch (getSignPlace()) {
-            case BEFORE -> getSign() + format(operand);
-            case AFTER -> format(operand) + getSign();
-        } + "=";
+        String statement = "";
+        switch (getSignPlace()) {
+            case BEFORE:
+                statement = getSign() + format(operand);
+                break;
+            case AFTER:
+                statement = format(operand) + getSign();
+                break;
+        }
+        return statement + "=";
     }
     
     @Override

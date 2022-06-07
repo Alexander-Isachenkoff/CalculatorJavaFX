@@ -1,8 +1,22 @@
 package ru.isachenkoff.calculator.operations;
 
+import javax.persistence.*;
+
+@Entity
 public class CalculationResult {
-    private final double result;
-    private final String statement;
+    @Id
+    @GeneratedValue(strategy = GenerationType.SEQUENCE)
+    @Column(name = "id", nullable = false)
+    private Long id;
+    
+    private double result;
+    private String statement;
+    
+    public Long getId() {return id;}
+    
+    public void setId(Long id) {this.id = id;}
+    
+    public CalculationResult() {}
     
     public CalculationResult(double result, String statement) {
         this.result = result;
@@ -15,6 +29,14 @@ public class CalculationResult {
     
     public String getStatement() {
         return statement;
+    }
+    
+    public void setStatement(String statement) {
+        this.statement = statement;
+    }
+    
+    public void setResult(double result) {
+        this.result = result;
     }
     
     @Override

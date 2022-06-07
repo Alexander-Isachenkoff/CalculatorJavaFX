@@ -9,6 +9,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.ListView;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.VBox;
+import ru.isachenkoff.calculator.data.CalculationResultDAO;
 import ru.isachenkoff.calculator.operations.*;
 
 import java.net.URL;
@@ -32,6 +33,7 @@ public class MainController implements Initializable {
     private Operation operation;
     private final ObservableList<CalculationResult> log = FXCollections.observableArrayList();
     private static final int MAX_LOG_SIZE = 10;
+    private CalculationResultDAO dao = new CalculationResultDAO();
     
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
@@ -116,10 +118,11 @@ public class MainController implements Initializable {
             if (operandBuilder.isNewValue()) {
                 Optional<Operation> optionalOperation = OperationType.createOperation(type);
                 if (optionalOperation.isPresent()) {
-                    if (optionalOperation.get() instanceof BinaryOperation binaryOperation) {
-                        binaryOperation.setFirstOperand(((BinaryOperation) operation).getFirstOperand());
+                    if (optionalOperation.get() instanceof BinaryOperation) {
+                        BinaryOperation binaryOperation = (BinaryOperation) optionalOperation.get();
+                        binaryOperation.setFirstOperand(((BinaryOperation) this.operation).getFirstOperand());
                         statementField.setText(binaryOperation.prepareStatement());
-                        operation = binaryOperation;
+                        this.operation = binaryOperation;
                     }
                 }
             } else {
@@ -133,12 +136,14 @@ public class MainController implements Initializable {
         Optional<Operation> optionalOperation = OperationType.createOperation(type);
         if (optionalOperation.isPresent()) {
             operation = optionalOperation.get();
-            if (operation instanceof BinaryOperation binaryOperation) {
+            if (operation instanceof BinaryOperation) {
+                BinaryOperation binaryOperation = (BinaryOperation) operation;
                 binaryOperation.setFirstOperand(operandBuilder.getOperandDouble());
                 statementField.setText(binaryOperation.prepareStatement());
                 operandBuilder.setNewValue();
             }
-            if (operation instanceof UnaryOperation unaryOperation) {
+            if (operation instanceof UnaryOperation) {
+                UnaryOperation unaryOperation = (UnaryOperation) operation;
                 unaryOperation.setOperand(operandBuilder.getOperandDouble());
                 evaluate();
             }
@@ -146,7 +151,8 @@ public class MainController implements Initializable {
     }
     
     private void evaluate() {
-        if (operation instanceof BinaryOperation binaryOperation) {
+        if (operation instanceof BinaryOperation) {
+            BinaryOperation binaryOperation = (BinaryOperation) operation;
             binaryOperation.setSecondOperand(operandBuilder.getOperandDouble());
         }
         CalculationResult result = operation.calc();
@@ -162,6 +168,7 @@ public class MainController implements Initializable {
         if (log.size() > MAX_LOG_SIZE) {
             log.remove(MAX_LOG_SIZE);
         }
+        dao.save(result);
     }
     
     @FXML
