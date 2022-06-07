@@ -34,7 +34,7 @@
                   <Insets bottom="5.0" />
                </VBox.margin>
             </TextField>
-            <TextField alignment="CENTER_RIGHT" maxHeight="1.7976931348623157E308" promptText="0" style="-fx-padding: 0; -fx-background-color: none;" text="10">
+            <TextField fx:id="inputField" alignment="CENTER_RIGHT" maxHeight="1.7976931348623157E308" promptText="0" style="-fx-padding: 0; -fx-background-color: none;" text="10">
                <font>
                   <Font name="Arial" size="48.0" />
                </font>
@@ -78,37 +78,37 @@
                   <Font size="18.0" />
                </font>
             </Button>
-            <Button maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" styleClass="number-button" text="7" GridPane.hgrow="ALWAYS" GridPane.rowIndex="2" GridPane.vgrow="ALWAYS">
+            <Button maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#onNumberPressed" styleClass="number-button" text="7" GridPane.hgrow="ALWAYS" GridPane.rowIndex="2" GridPane.vgrow="ALWAYS">
                <font>
                   <Font name="System Bold" size="18.0" />
                </font>
             </Button>
-            <Button maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" styleClass="number-button" text="4" GridPane.hgrow="ALWAYS" GridPane.rowIndex="3" GridPane.vgrow="ALWAYS">
+            <Button maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#onNumberPressed" styleClass="number-button" text="4" GridPane.hgrow="ALWAYS" GridPane.rowIndex="3" GridPane.vgrow="ALWAYS">
                <font>
                   <Font name="System Bold" size="18.0" />
                </font>
             </Button>
-            <Button maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" styleClass="number-button" text="8" GridPane.columnIndex="1" GridPane.hgrow="ALWAYS" GridPane.rowIndex="2" GridPane.vgrow="ALWAYS">
+            <Button maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#onNumberPressed" styleClass="number-button" text="8" GridPane.columnIndex="1" GridPane.hgrow="ALWAYS" GridPane.rowIndex="2" GridPane.vgrow="ALWAYS">
                <font>
                   <Font name="System Bold" size="18.0" />
                </font>
             </Button>
-            <Button maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" styleClass="number-button" text="5" GridPane.columnIndex="1" GridPane.hgrow="ALWAYS" GridPane.rowIndex="3" GridPane.vgrow="ALWAYS">
+            <Button maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#onNumberPressed" styleClass="number-button" text="5" GridPane.columnIndex="1" GridPane.hgrow="ALWAYS" GridPane.rowIndex="3" GridPane.vgrow="ALWAYS">
                <font>
                   <Font name="System Bold" size="18.0" />
                </font>
             </Button>
-            <Button maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" styleClass="number-button" text="2" GridPane.columnIndex="1" GridPane.hgrow="ALWAYS" GridPane.rowIndex="4" GridPane.vgrow="ALWAYS">
+            <Button maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#onNumberPressed" styleClass="number-button" text="2" GridPane.columnIndex="1" GridPane.hgrow="ALWAYS" GridPane.rowIndex="4" GridPane.vgrow="ALWAYS">
                <font>
                   <Font name="System Bold" size="18.0" />
                </font>
             </Button>
-            <Button maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" styleClass="number-button" text="0" GridPane.columnIndex="1" GridPane.hgrow="ALWAYS" GridPane.rowIndex="5" GridPane.vgrow="ALWAYS">
+            <Button maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#onNumberPressed" styleClass="number-button" text="0" GridPane.columnIndex="1" GridPane.hgrow="ALWAYS" GridPane.rowIndex="5" GridPane.vgrow="ALWAYS">
                <font>
                   <Font name="System Bold" size="18.0" />
                </font>
             </Button>
-            <Button maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" styleClass="number-button" text="9" GridPane.columnIndex="2" GridPane.hgrow="ALWAYS" GridPane.rowIndex="2" GridPane.vgrow="ALWAYS">
+            <Button maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#onNumberPressed" styleClass="number-button" text="9" GridPane.columnIndex="2" GridPane.hgrow="ALWAYS" GridPane.rowIndex="2" GridPane.vgrow="ALWAYS">
                <font>
                   <Font name="System Bold" size="18.0" />
                </font>
@@ -118,17 +118,17 @@
                   <Font size="18.0" />
                </font>
             </Button>
-            <Button maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" styleClass="number-button" text="6" GridPane.columnIndex="2" GridPane.hgrow="ALWAYS" GridPane.rowIndex="3" GridPane.vgrow="ALWAYS">
+            <Button maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#onNumberPressed" styleClass="number-button" text="6" GridPane.columnIndex="2" GridPane.hgrow="ALWAYS" GridPane.rowIndex="3" GridPane.vgrow="ALWAYS">
                <font>
                   <Font name="System Bold" size="18.0" />
                </font>
             </Button>
-            <Button maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" styleClass="number-button" text="3" GridPane.columnIndex="2" GridPane.hgrow="ALWAYS" GridPane.rowIndex="4" GridPane.vgrow="ALWAYS">
+            <Button maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#onNumberPressed" styleClass="number-button" text="3" GridPane.columnIndex="2" GridPane.hgrow="ALWAYS" GridPane.rowIndex="4" GridPane.vgrow="ALWAYS">
                <font>
                   <Font name="System Bold" size="18.0" />
                </font>
             </Button>
-            <Button maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" text="," GridPane.columnIndex="2" GridPane.hgrow="ALWAYS" GridPane.rowIndex="5" GridPane.vgrow="ALWAYS">
+            <Button maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#onPointPressed" text="," GridPane.columnIndex="2" GridPane.hgrow="ALWAYS" GridPane.rowIndex="5" GridPane.vgrow="ALWAYS">
                <font>
                   <Font size="18.0" />
                </font>
@@ -153,7 +153,7 @@
                   <Font size="18.0" />
                </font>
             </Button>
-            <Button maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" text="⌫" GridPane.columnIndex="3" GridPane.hgrow="ALWAYS" GridPane.vgrow="ALWAYS">
+            <Button maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#deleteLast" text="⌫" GridPane.columnIndex="3" GridPane.hgrow="ALWAYS" GridPane.vgrow="ALWAYS">
                <font>
                   <Font size="18.0" />
                </font>
@@ -163,7 +163,7 @@
                   <Font size="18.0" />
                </font>
             </Button>
-            <Button maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" styleClass="number-button" text="1" GridPane.rowIndex="4">
+            <Button maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#onNumberPressed" styleClass="number-button" text="1" GridPane.rowIndex="4">
                <font>
                   <Font name="System Bold" size="18.0" />
                </font>
