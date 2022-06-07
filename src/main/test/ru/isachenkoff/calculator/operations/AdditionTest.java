@@ -8,7 +8,9 @@ public class AdditionTest {
     
     @Test
     void prepareStatement() {
-    
+        Addition addition = new Addition(3.0, null);
+        String statement = addition.prepareStatement();
+        assertEquals("3+", statement);
     }
     
     @Test
