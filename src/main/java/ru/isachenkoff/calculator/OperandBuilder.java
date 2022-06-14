@@ -8,12 +8,17 @@ import java.text.ParseException;
 
 public class OperandBuilder {
     
-    private final StringProperty operand = new SimpleStringProperty("0");
+    private static final String DEFAULT = "0";
+    private final StringProperty operand = new SimpleStringProperty(DEFAULT);
     private final static String POINT = ",";
     private boolean newValue;
     
+    public void clear() {
+        operand.setValue(DEFAULT);
+    }
+    
     public void addNumber(String number) {
-        if (newValue || operand.getValue().equals("0")) {
+        if (newValue || operand.getValue().equals(DEFAULT)) {
             operand.setValue(number);
         } else {
             operand.setValue(operand.getValue() + number);
@@ -35,7 +40,7 @@ public class OperandBuilder {
         if (value.length() > 1) {
             operand.setValue(value.substring(0, value.length() - 1));
         } else {
-            operand.setValue("0");
+            operand.setValue(DEFAULT);
         }
     }
     

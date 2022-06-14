@@ -119,6 +119,7 @@ public class MainController implements Initializable {
     @FXML
     private void onClear() {
         statementField.clear();
+        operandBuilder.clear();
         operation = null;
     }
     
