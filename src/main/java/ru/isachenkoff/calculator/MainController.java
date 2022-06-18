@@ -16,7 +16,6 @@ import java.net.URL;
 import java.util.List;
 import java.util.Optional;
 import java.util.ResourceBundle;
-import java.util.stream.Collectors;
 
 public class MainController implements Initializable {
     
@@ -46,10 +45,7 @@ public class MainController implements Initializable {
     }
     
     private void loadCalculationHistory() {
-        List<CalculationResult> calculationResults = dao.selectAll().stream()
-                .sorted((o1, o2) -> Long.compare(o2.getId(), o1.getId()))
-                .limit(MAX_LOG_SIZE)
-                .collect(Collectors.toList());
+        List<CalculationResult> calculationResults = dao.selectLast(MAX_LOG_SIZE);
         log.setAll(FXCollections.observableArrayList(calculationResults));
         logList.setItems(log);
     }
