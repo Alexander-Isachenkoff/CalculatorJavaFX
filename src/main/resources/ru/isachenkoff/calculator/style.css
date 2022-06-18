@@ -63,3 +63,18 @@
 .log-list .increment-button, .log-list .decrement-button, .log-list .corner {
     -fx-background-color: none;
 }
+
+.statement-cell-part, .result-cell-part {
+    -fx-background-color: none;
+    -fx-padding: 2px;
+    -fx-pref-width: 220px;
+}
+
+.statement-cell-part {
+    -fx-text-fill: #666;
+}
+
+.result-cell-part {
+    -fx-font-size: 22px;
+    -fx-font-weight: bold;
+}

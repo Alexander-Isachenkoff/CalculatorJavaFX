@@ -4,7 +4,6 @@ import javafx.geometry.Pos;
 import javafx.scene.control.ListCell;
 import javafx.scene.control.ListView;
 import javafx.scene.control.TextField;
-import javafx.scene.layout.Background;
 import javafx.scene.layout.VBox;
 import javafx.util.Callback;
 import ru.isachenkoff.calculator.operations.CalculationResult;
@@ -31,19 +30,13 @@ class LogListCell extends ListCell<CalculationResult> {
             setGraphic(vBox);
     
             TextField textField1 = new TextField(item.getStatement());
+            textField1.getStyleClass().add("statement-cell-part");
             TextField textField2 = new TextField(item.getFormattedResult());
-    
-            textField1.setBackground(Background.EMPTY);
-            textField2.setBackground(Background.EMPTY);
-    
-            textField1.setStyle("-fx-font-weight: regular; -fx-text-fill: #666; -fx-padding: 2px/*; -fx-border-color: red*/");
-            textField2.setStyle("-fx-font-weight: bold; -fx-font-size: 22px; -fx-padding: 2px/*; -fx-border-color: red*/");
+            textField2.getStyleClass().add("result-cell-part");
     
             textField1.setEditable(false);
             textField2.setEditable(false);
     
-            textField1.setPrefWidth(220);
-            textField2.setPrefWidth(220);
             textField1.setAlignment(Pos.CENTER_RIGHT);
             textField2.setAlignment(Pos.CENTER_RIGHT);
     
