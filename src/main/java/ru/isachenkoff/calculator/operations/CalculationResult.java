@@ -27,6 +27,10 @@ public class CalculationResult {
         return result;
     }
     
+    public String getFormattedResult() {
+        return AbstractOperation.format(result);
+    }
+    
     public String getStatement() {
         return statement;
     }
