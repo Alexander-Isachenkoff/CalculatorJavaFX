@@ -31,12 +31,12 @@
     -fx-background-color: none;
 }
 
-.list-view {
+.log-list {
     -fx-background-color: #f2f2f2;
     -fx-border: none;
 }
 
-.list-cell {
+.log-list .list-cell {
     -fx-padding: 12px;
     -fx-background-color: #f2f2f2;
     -fx-background-insets: 5px 0px;
@@ -44,14 +44,22 @@
     -fx-font-size: 14px;
 }
 
-.list-cell:hover, .clean-log-button:hover {
+.log-list .list-cell:hover, .clean-log-button:hover {
     -fx-background-color: #dadada;
 }
 
-.list-cell:pressed, .clean-log-button:pressed {
+.log-list .list-cell:pressed, .clean-log-button:pressed {
     -fx-background-color: #c2c2c2;
 }
 
-.list-cell:selected {
+.log-list .list-cell:selected {
     -fx-text-fill: black;
+}
+
+.log-list .scroll-bar {
+    -fx-background-color: none;
+}
+
+.log-list .increment-button, .log-list .decrement-button, .log-list .corner {
+    -fx-background-color: none;
 }
