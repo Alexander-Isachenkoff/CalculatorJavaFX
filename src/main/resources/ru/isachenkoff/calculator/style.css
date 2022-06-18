@@ -37,9 +37,9 @@
 }
 
 .log-list .list-cell {
-    -fx-padding: 12px;
+    -fx-padding: 13px;
     -fx-background-color: #f2f2f2;
-    -fx-background-insets: 5px 0px;
+    -fx-background-insets: 10px 0px;
     -fx-text-fill: #666;
     -fx-font-size: 14px;
 }

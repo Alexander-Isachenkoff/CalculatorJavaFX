@@ -39,6 +39,7 @@ public class MainController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         inputField.textProperty().bindBidirectional(operandBuilder.getOperand());
+        logList.setCellFactory(new LogListCellFactory());
         logPane.setManaged(false);
         logPane.setVisible(false);
         loadCalculationHistory();
