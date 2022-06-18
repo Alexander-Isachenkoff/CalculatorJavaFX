@@ -5,11 +5,7 @@ import javafx.scene.control.ListCell;
 import javafx.scene.control.ListView;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.Background;
-import javafx.scene.layout.Border;
 import javafx.scene.layout.VBox;
-import javafx.scene.paint.Paint;
-import javafx.scene.text.Text;
-import javafx.scene.text.TextFlow;
 import javafx.util.Callback;
 import ru.isachenkoff.calculator.operations.CalculationResult;
 
@@ -33,19 +29,24 @@ class LogListCell extends ListCell<CalculationResult> {
         if (!empty) {
             VBox vBox = new VBox();
             setGraphic(vBox);
-            
+    
             TextField textField1 = new TextField(item.getStatement());
             TextField textField2 = new TextField(item.getFormattedResult());
-            
+    
             textField1.setBackground(Background.EMPTY);
             textField2.setBackground(Background.EMPTY);
     
-            textField1.setStyle("-fx-font-weight: regular; -fx-text-fill: #666; -fx-padding: 2px");
-            textField2.setStyle("-fx-font-weight: bold; -fx-font-size: 22px; -fx-padding: 2px");
-            
+            textField1.setStyle("-fx-font-weight: regular; -fx-text-fill: #666; -fx-padding: 2px/*; -fx-border-color: red*/");
+            textField2.setStyle("-fx-font-weight: bold; -fx-font-size: 22px; -fx-padding: 2px/*; -fx-border-color: red*/");
+    
+            textField1.setEditable(false);
+            textField2.setEditable(false);
+    
+            textField1.setPrefWidth(220);
+            textField2.setPrefWidth(220);
             textField1.setAlignment(Pos.CENTER_RIGHT);
             textField2.setAlignment(Pos.CENTER_RIGHT);
-            
+    
             vBox.getChildren().addAll(textField1, textField2);
         }
     }
