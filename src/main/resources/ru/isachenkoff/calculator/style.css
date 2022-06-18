@@ -30,3 +30,32 @@
 .log-button {
     -fx-background-color: none;
 }
+
+.list-view {
+    -fx-background-color: #f2f2f2;
+    -fx-border: none;
+}
+
+.list-cell {
+    -fx-padding: 12px;
+    -fx-background-color: #f2f2f2;
+    -fx-background-insets: 5px 0px;
+    -fx-text-fill: #666;
+    -fx-font-size: 14px;
+}
+
+.list-cell:hover {
+    -fx-background-color: #dadada;
+}
+
+.list-cell:hover {
+    -fx-background-color: #dadada;
+}
+
+.list-cell:pressed {
+    -fx-background-color: #c2c2c2;
+}
+
+.list-cell:selected {
+    -fx-text-fill: black;
+}

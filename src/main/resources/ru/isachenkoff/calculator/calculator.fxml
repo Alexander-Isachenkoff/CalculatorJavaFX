@@ -12,7 +12,6 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-
 <HBox xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ru.isachenkoff.calculator.MainController">
    <children>
       <VBox fx:id="mainVbox" alignment="CENTER" minHeight="-Infinity" minWidth="-Infinity" prefHeight="460.0" prefWidth="320.0" spacing="4.0" style="-fx-background-color: #e6e6e6;" stylesheets="@style.css" HBox.hgrow="ALWAYS">
@@ -180,9 +179,9 @@
             </GridPane>
          </children>
       </VBox>
-      <VBox fx:id="logPane" prefHeight="200.0" prefWidth="150.0">
+      <VBox fx:id="logPane">
          <children>
-            <ListView fx:id="logList" style="-fx-background-color: none;" VBox.vgrow="ALWAYS" />
+            <ListView fx:id="logList" prefWidth="220.0" stylesheets="@style.css" VBox.vgrow="ALWAYS" />
          </children>
       </VBox>
    </children>
