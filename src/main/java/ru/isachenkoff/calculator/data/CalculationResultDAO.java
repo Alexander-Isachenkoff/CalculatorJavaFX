@@ -1,6 +1,7 @@
 package ru.isachenkoff.calculator.data;
 
 import org.hibernate.Session;
+import org.hibernate.Transaction;
 import ru.isachenkoff.calculator.operations.CalculationResult;
 
 import javax.persistence.criteria.CriteriaBuilder;
@@ -23,6 +24,17 @@ public class CalculationResultDAO extends DAO<CalculationResult> {
         List<CalculationResult> resultList = session.createQuery(query).setMaxResults(count).getResultList();
         session.close();
         return resultList;
+    }
+    
+    public void deleteAll() {
+        List<CalculationResult> results = selectAll();
+        Session session = openSession();
+        Transaction tx1 = session.beginTransaction();
+        for (CalculationResult obj : results) {
+            session.delete(obj);
+        }
+        tx1.commit();
+        session.close();
     }
     
 }

@@ -190,4 +190,10 @@ public class MainController implements Initializable {
         logPane.getScene().getWindow().sizeToScene();
         mainVbox.setPrefSize(originalPrefWidth, originalPrefHeight);
     }
+    
+    @FXML
+    private void onCleanLog() {
+        dao.deleteAll();
+        loadCalculationHistory();
+    }
 }

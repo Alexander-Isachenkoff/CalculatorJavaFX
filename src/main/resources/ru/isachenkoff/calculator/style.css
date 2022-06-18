@@ -27,7 +27,7 @@
     -fx-background-color: #777;
 }
 
-.log-button {
+.log-button, .clean-log-button {
     -fx-background-color: none;
 }
 
@@ -44,15 +44,11 @@
     -fx-font-size: 14px;
 }
 
-.list-cell:hover {
+.list-cell:hover, .clean-log-button:hover {
     -fx-background-color: #dadada;
 }
 
-.list-cell:hover {
-    -fx-background-color: #dadada;
-}
-
-.list-cell:pressed {
+.list-cell:pressed, .clean-log-button:pressed {
     -fx-background-color: #c2c2c2;
 }
 

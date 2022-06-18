@@ -16,9 +16,9 @@ public abstract class BinaryOperation extends AbstractOperation {
     
     @Override
     public String prepareStatement() {
-        String statement = format(firstOperand) + getSign();
+        String statement = format(firstOperand) + " " + getSign() + " ";
         if (hasSecondOperand()) {
-            statement += format(secondOperand) + "=";
+            statement += format(secondOperand) + " = ";
         }
         return statement;
     }

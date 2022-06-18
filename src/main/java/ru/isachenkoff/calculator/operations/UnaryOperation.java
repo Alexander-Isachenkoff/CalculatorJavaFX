@@ -15,7 +15,7 @@ public abstract class UnaryOperation extends AbstractOperation {
                 statement = format(operand) + getSign();
                 break;
         }
-        return statement + "=";
+        return statement + " = ";
     }
     
     @Override
