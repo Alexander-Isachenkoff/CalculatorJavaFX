@@ -3,11 +3,11 @@
     -fx-background-radius: 0;
 }
 
-.button:hover {
+.button:hover, .titled-pane .title:hover {
     -fx-background-color: #d1d1d1;
 }
 
-.button:pressed {
+.button:pressed, .titled-pane .title:pressed {
     -fx-background-color: #bbbbbb;
 }
 
@@ -77,4 +77,14 @@
 .result-cell-part {
     -fx-font-size: 22px;
     -fx-font-weight: bold;
+}
+
+.titled-pane .title {
+    visibility: false;
+    -fx-pref-height: 0;
+}
+
+.titled-pane .content {
+    -fx-background-color: none;
+    -fx-border-color: none;
 }

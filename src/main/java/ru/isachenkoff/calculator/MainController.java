@@ -8,6 +8,7 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.ListView;
 import javafx.scene.control.TextField;
+import javafx.scene.control.TitledPane;
 import javafx.scene.layout.VBox;
 import ru.isachenkoff.calculator.data.CalculationResultDAO;
 import ru.isachenkoff.calculator.operations.*;
@@ -19,6 +20,8 @@ import java.util.ResourceBundle;
 
 public class MainController implements Initializable {
     
+    @FXML
+    private TitledPane titledPane;
     @FXML
     private ListView<CalculationResult> logList;
     @FXML
@@ -196,5 +199,10 @@ public class MainController implements Initializable {
     private void onCleanLog() {
         dao.deleteAll();
         loadCalculationHistory();
+    }
+    
+    @FXML
+    private void onExpand() {
+        titledPane.setExpanded(!titledPane.isExpanded());
     }
 }
