@@ -1,19 +1,18 @@
 package ru.isachenkoff.calculator.operations;
 
-public class Sqrt extends UnaryOperation {
+public class Cos extends UnaryOperation {
     
-    public Sqrt() {
-        super("√");
+    public Cos() {
+        super("cos", true);
     }
     
     @Override
     double apply(double operand) {
-        return Math.sqrt(operand);
+        return Math.cos(operand);
     }
     
     @Override
     SignPlace getSignPlace() {
         return SignPlace.BEFORE;
     }
-
 }

@@ -110,6 +110,31 @@ public class MainController implements Initializable {
     }
     
     @FXML
+    private void onSin() {
+        onOperation(OperationType.SIN);
+    }
+    
+    @FXML
+    private void onCos() {
+        onOperation(OperationType.COS);
+    }
+    
+    @FXML
+    private void onTan() {
+        onOperation(OperationType.TAN);
+    }
+    
+    @FXML
+    private void onLn() {
+        onOperation(OperationType.LN);
+    }
+    
+    @FXML
+    private void onLog10() {
+        onOperation(OperationType.LOG);
+    }
+    
+    @FXML
     private void onEquals() {
         if (operation != null) {
             evaluate();

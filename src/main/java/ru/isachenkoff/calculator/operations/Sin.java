@@ -1,19 +1,19 @@
 package ru.isachenkoff.calculator.operations;
 
-public class Sqrt extends UnaryOperation {
+public class Sin extends UnaryOperation {
     
-    public Sqrt() {
-        super("√");
+    public Sin() {
+        super("sin", true);
     }
     
     @Override
     double apply(double operand) {
-        return Math.sqrt(operand);
+        return Math.sin(operand);
     }
     
     @Override
     SignPlace getSignPlace() {
         return SignPlace.BEFORE;
     }
-
+    
 }

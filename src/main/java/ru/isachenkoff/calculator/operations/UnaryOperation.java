@@ -3,16 +3,30 @@ package ru.isachenkoff.calculator.operations;
 public abstract class UnaryOperation extends AbstractOperation {
     
     private double operand;
+    private final boolean needParentheses;
+    
+    public UnaryOperation(String sign) {
+        this(sign, false);
+    }
+    
+    public UnaryOperation(String sign, boolean needParentheses) {
+        super(sign);
+        this.needParentheses = needParentheses;
+    }
     
     @Override
     public String prepareStatement() {
         String statement = "";
+        String operandPart = format(operand);
+        if (needParentheses) {
+            operandPart = "(" + operandPart + ")";
+        }
         switch (getSignPlace()) {
             case BEFORE:
-                statement = getSign() + format(operand);
+                statement = getSign() + operandPart;
                 break;
             case AFTER:
-                statement = format(operand) + getSign();
+                statement = operandPart + getSign();
                 break;
         }
         return statement + " = ";

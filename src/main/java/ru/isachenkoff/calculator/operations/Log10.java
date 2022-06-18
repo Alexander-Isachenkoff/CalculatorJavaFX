@@ -1,19 +1,18 @@
 package ru.isachenkoff.calculator.operations;
 
-public class Sqrt extends UnaryOperation {
+public class Log10 extends UnaryOperation {
     
-    public Sqrt() {
-        super("√");
+    public Log10() {
+        super("lg", true);
     }
     
     @Override
     double apply(double operand) {
-        return Math.sqrt(operand);
+        return Math.log10(operand);
     }
     
     @Override
     SignPlace getSignPlace() {
         return SignPlace.BEFORE;
     }
-
 }

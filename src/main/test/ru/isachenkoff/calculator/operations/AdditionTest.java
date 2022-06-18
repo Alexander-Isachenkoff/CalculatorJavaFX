@@ -11,7 +11,7 @@ public class AdditionTest {
         Addition addition = new Addition();
         addition.setFirstOperand(3.0);
         String statement = addition.prepareStatement();
-        assertEquals("3+", statement);
+        assertEquals("3 + ", statement);
     }
     
     @Test
@@ -20,7 +20,7 @@ public class AdditionTest {
         addition.setFirstOperand(5.0);
         addition.setSecondOperand(10.0);
         CalculationResult calc = addition.calc();
-        assertEquals("5+10=", calc.getStatement());
+        assertEquals("5 + 10 = ", calc.getStatement());
         assertEquals(15, calc.getResult());
     }
     
@@ -30,7 +30,7 @@ public class AdditionTest {
         addition.setFirstOperand(5.5);
         addition.setSecondOperand(6.5);
         CalculationResult calc = addition.calc();
-        assertEquals("5,5+6,5=", calc.getStatement());
+        assertEquals("5,5 + 6,5 = ", calc.getStatement());
         assertEquals(12, calc.getResult());
     }
     

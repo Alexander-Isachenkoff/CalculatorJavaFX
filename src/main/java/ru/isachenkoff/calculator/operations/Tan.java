@@ -1,19 +1,18 @@
 package ru.isachenkoff.calculator.operations;
 
-public class Sqrt extends UnaryOperation {
+public class Tan extends UnaryOperation {
     
-    public Sqrt() {
-        super("√");
+    public Tan() {
+        super("tan", true);
     }
     
     @Override
     double apply(double operand) {
-        return Math.sqrt(operand);
+        return Math.tan(operand);
     }
     
     @Override
     SignPlace getSignPlace() {
         return SignPlace.BEFORE;
     }
-
 }

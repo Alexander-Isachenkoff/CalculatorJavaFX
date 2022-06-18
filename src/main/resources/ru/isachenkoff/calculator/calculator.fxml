@@ -55,7 +55,7 @@
                   <Insets bottom="10.0" top="10.0" />
                </VBox.margin>
             </VBox>
-            <TitledPane fx:id="titledPane">
+            <TitledPane fx:id="titledPane" expanded="false">
                <content>
                   <GridPane hgap="3.0" style="-fx-padding: 0;">
                     <columnConstraints>
@@ -69,11 +69,11 @@
                       <RowConstraints minHeight="-Infinity" prefHeight="25.0" vgrow="SOMETIMES" />
                     </rowConstraints>
                      <children>
-                        <Button maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="-Infinity" mnemonicParsing="false" text="sin" GridPane.hgrow="ALWAYS" GridPane.vgrow="ALWAYS" />
-                        <Button maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="-Infinity" mnemonicParsing="false" text="cos" GridPane.columnIndex="1" GridPane.hgrow="ALWAYS" GridPane.vgrow="ALWAYS" />
-                        <Button maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="-Infinity" mnemonicParsing="false" text="tan" GridPane.columnIndex="2" GridPane.hgrow="ALWAYS" GridPane.vgrow="ALWAYS" />
-                        <Button maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="-Infinity" mnemonicParsing="false" text="log" GridPane.columnIndex="3" GridPane.hgrow="ALWAYS" GridPane.vgrow="ALWAYS" />
-                        <Button maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="-Infinity" mnemonicParsing="false" text="In" GridPane.columnIndex="4" GridPane.hgrow="ALWAYS" GridPane.vgrow="ALWAYS" />
+                        <Button maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="-Infinity" mnemonicParsing="false" onAction="#onSin" text="sin" GridPane.hgrow="ALWAYS" GridPane.vgrow="ALWAYS" />
+                        <Button maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="-Infinity" mnemonicParsing="false" onAction="#onCos" text="cos" GridPane.columnIndex="1" GridPane.hgrow="ALWAYS" GridPane.vgrow="ALWAYS" />
+                        <Button maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="-Infinity" mnemonicParsing="false" onAction="#onTan" text="tan" GridPane.columnIndex="2" GridPane.hgrow="ALWAYS" GridPane.vgrow="ALWAYS" />
+                        <Button maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="-Infinity" mnemonicParsing="false" onAction="#onLog10" text="log" GridPane.columnIndex="3" GridPane.hgrow="ALWAYS" GridPane.vgrow="ALWAYS" />
+                        <Button maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="-Infinity" mnemonicParsing="false" onAction="#onLn" text="In" GridPane.columnIndex="4" GridPane.hgrow="ALWAYS" GridPane.vgrow="ALWAYS" />
                      </children>
                   </GridPane>
                </content>

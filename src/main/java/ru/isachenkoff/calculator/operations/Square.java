@@ -2,9 +2,8 @@ package ru.isachenkoff.calculator.operations;
 
 public class Square extends UnaryOperation {
     
-    @Override
-    public String getSign() {
-        return "²";
+    public Square() {
+        super("²");
     }
     
     @Override

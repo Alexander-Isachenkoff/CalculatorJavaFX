@@ -11,7 +11,12 @@ public enum OperationType {
     PRODUCT(Product::new),
     POWER(Power::new),
     SQRT(Sqrt::new),
-    SQUARE(Square::new);
+    SQUARE(Square::new),
+    LN(Ln::new),
+    SIN(Sin::new),
+    COS(Cos::new),
+    TAN(Tan::new),
+    LOG(Log10::new);
     
     OperationType(Supplier<Operation> operationSupplier) {
         this.operationSupplier = operationSupplier;

@@ -1,15 +1,18 @@
 package ru.isachenkoff.calculator.operations;
 
+import java.util.function.BinaryOperator;
+
 public abstract class BinaryOperation extends AbstractOperation {
     
     private Double firstOperand;
     private Double secondOperand;
     
-    public BinaryOperation() {
-        this(null, null);
+    BinaryOperation(String sign) {
+        this(sign, null, null);
     }
     
-    public BinaryOperation(Double firstOperand, Double secondOperand) {
+    public BinaryOperation(String sign, Double firstOperand, Double secondOperand) {
+        super(sign);
         this.firstOperand = firstOperand;
         this.secondOperand = secondOperand;
     }
