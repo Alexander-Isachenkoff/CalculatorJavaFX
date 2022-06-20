@@ -15,16 +15,25 @@
     -fx-background-color: white;
 }
 
-.equals-button {
+.equals-button, .toggle-button {
     -fx-background-color: #bbb;
 }
 
-.equals-button:hover {
+.equals-button:hover, .toggle-button:hover {
     -fx-background-color: #999;
 }
 
-.equals-button:pressed {
+.equals-button:pressed, .toggle-button:pressed, .toggle-button:selected {
     -fx-background-color: #777;
+}
+
+.toggle-button {
+    -fx-background-insets: 3px 5px;
+}
+
+.toggle-button:selected {
+    -fx-text-fill: #5ac8c7;
+    -fx-font-weight: bold;
 }
 
 .log-button, .clean-log-button {

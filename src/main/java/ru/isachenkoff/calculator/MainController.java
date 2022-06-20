@@ -5,10 +5,7 @@ import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.scene.control.Button;
-import javafx.scene.control.ListView;
-import javafx.scene.control.TextField;
-import javafx.scene.control.TitledPane;
+import javafx.scene.control.*;
 import javafx.scene.layout.VBox;
 import ru.isachenkoff.calculator.data.CalculationResultDAO;
 import ru.isachenkoff.calculator.operations.*;
@@ -20,6 +17,10 @@ import java.util.ResourceBundle;
 
 public class MainController implements Initializable {
     
+    @FXML
+    private ToggleButton radButton;
+    @FXML
+    private ToggleButton degButton;
     @FXML
     private TitledPane titledPane;
     @FXML
@@ -43,8 +44,18 @@ public class MainController implements Initializable {
     public void initialize(URL url, ResourceBundle resourceBundle) {
         inputField.textProperty().bindBidirectional(operandBuilder.getOperand());
         logList.setCellFactory(new LogListCellFactory());
+        titledPane.setExpanded(false);
         logPane.setManaged(false);
         logPane.setVisible(false);
+        ToggleGroup toggleGroup = new ToggleGroup();
+        toggleGroup.getToggles().add(degButton);
+        toggleGroup.getToggles().add(radButton);
+        toggleGroup.selectedToggleProperty().addListener((observable, oldValue, newValue) -> {
+            for (Toggle toggle : toggleGroup.getToggles()) {
+                ((ToggleButton) toggle).setDisable(toggle == newValue);
+            }
+        });
+        degButton.setSelected(true);
         loadCalculationHistory();
     }
     
