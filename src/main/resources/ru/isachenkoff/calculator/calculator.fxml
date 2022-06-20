@@ -43,7 +43,7 @@
                         <Cursor fx:constant="DEFAULT" />
                      </cursor>
                   </TextField>
-                  <TextField fx:id="inputField" alignment="CENTER_RIGHT" editable="false" maxHeight="1.7976931348623157E308" style="-fx-padding: 0; -fx-background-color: none;">
+                  <TextField fx:id="inputField" alignment="CENTER_RIGHT" editable="false" maxHeight="1.7976931348623157E308" minHeight="-Infinity" prefHeight="55.0" style="-fx-padding: 0; -fx-background-color: none;">
                      <font>
                         <Font name="Arial" size="48.0" />
                      </font>

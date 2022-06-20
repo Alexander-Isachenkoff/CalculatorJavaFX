@@ -17,6 +17,10 @@ public class OperandBuilder {
         operand.setValue(DEFAULT);
     }
     
+    public void setNumber(double number) {
+        operand.setValue(FormatUtil.format(number));
+    }
+    
     public void addNumber(String number) {
         if (newValue || operand.getValue().equals(DEFAULT)) {
             operand.setValue(number);

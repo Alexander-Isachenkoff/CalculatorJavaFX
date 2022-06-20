@@ -5,7 +5,7 @@ import java.text.ParseException;
 
 public class FormatUtil {
     
-    private final static DecimalFormat DECIMAL_FORMAT = new DecimalFormat("#.############");
+    private final static DecimalFormat DECIMAL_FORMAT = new DecimalFormat("#.###############");
     private static final String NaN_STRING = "не число";
     
     public static String format(double value) {

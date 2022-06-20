@@ -7,6 +7,8 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.*;
 import javafx.scene.layout.VBox;
+import javafx.scene.text.Font;
+import javafx.scene.text.FontWeight;
 import ru.isachenkoff.calculator.data.CalculationResultDAO;
 import ru.isachenkoff.calculator.operations.CalculationResult;
 import ru.isachenkoff.calculator.operations.Calculator;
@@ -19,6 +21,7 @@ import java.util.ResourceBundle;
 
 public class MainController implements Initializable {
     
+    private static final int MAX_FONT_SIZE = 48;
     @FXML
     private ToggleButton radButton;
     @FXML
@@ -46,6 +49,9 @@ public class MainController implements Initializable {
     public void initialize(URL url, ResourceBundle resourceBundle) {
         calculator.setOnEvaluateAction(this::logCalcResult);
         inputField.textProperty().bindBidirectional(calculator.getOperandStringProperty());
+        inputField.widthProperty().addListener((observable, oldValue, newValue) -> fitFontSize());
+        inputField.textProperty().addListener((observable, oldValue, newValue) -> fitFontSize());
+    
         statementField.textProperty().bindBidirectional(calculator.getStatementStringProperty());
         logList.setCellFactory(new LogListCellFactory());
         titledPane.setExpanded(false);
@@ -67,6 +73,14 @@ public class MainController implements Initializable {
         });
         degButton.setSelected(true);
         loadCalculationHistory();
+    }
+    
+    private void fitFontSize() {
+        Font font = inputField.getFont();
+        int length = inputField.getText().length();
+        double width = inputField.getWidth();
+        double size = Math.min(MAX_FONT_SIZE, width / length * 1.8);
+        inputField.setFont(Font.font(font.getName(), FontWeight.NORMAL, size));
     }
     
     private void loadCalculationHistory() {
@@ -168,12 +182,12 @@ public class MainController implements Initializable {
     
     @FXML
     private void onPi() {
-    
+        calculator.getOperandBuilder().setNumber(Math.PI);
     }
     
     @FXML
     private void onE() {
-    
+        calculator.getOperandBuilder().setNumber(Math.E);
     }
     
     @FXML
