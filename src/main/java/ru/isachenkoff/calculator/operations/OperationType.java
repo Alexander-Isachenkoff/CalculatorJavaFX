@@ -16,7 +16,8 @@ public enum OperationType {
     SIN(Sin::new),
     COS(Cos::new),
     TAN(Tan::new),
-    LOG(Log10::new);
+    LOG(Log10::new),
+    FACTORIAL(Factorial::new);
     
     OperationType(Supplier<Operation> operationSupplier) {
         this.operationSupplier = operationSupplier;

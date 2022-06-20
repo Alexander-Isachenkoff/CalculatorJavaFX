@@ -146,6 +146,26 @@ public class MainController implements Initializable {
     }
     
     @FXML
+    private void onFactorial() {
+        onOperation(OperationType.FACTORIAL);
+    }
+    
+    @FXML
+    private void onPercent() {
+    
+    }
+    
+    @FXML
+    private void onPi() {
+    
+    }
+    
+    @FXML
+    private void onE() {
+    
+    }
+    
+    @FXML
     private void onEquals() {
         if (operation != null) {
             evaluate();
