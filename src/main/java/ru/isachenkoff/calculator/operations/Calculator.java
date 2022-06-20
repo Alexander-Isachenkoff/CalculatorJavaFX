@@ -7,9 +7,9 @@ import java.util.function.Consumer;
 
 public class Calculator {
     
-    private Statement statement;
     private final OperandBuilder operandBuilder = new OperandBuilder();
     private final StringProperty statementString = new SimpleStringProperty();
+    private Statement statement;
     private Consumer<CalculationResult> onEvaluateAction = result -> {};
     private Unit unit = Unit.DEG;
     
@@ -23,6 +23,34 @@ public class Calculator {
     
     public void setUnit(Unit unit) {
         this.unit = unit;
+    }
+    
+    public void setOperation(OperationType type) {
+        if (operandBuilder.getOperandDouble() == null) {
+            clear();
+            return;
+        }
+        if (statement == null) {
+            addNewOperation(type);
+        } else {
+            if (operandBuilder.isNewValue()) {
+                Operation newOperation = OperationType.createOperation(type);
+                if (newOperation instanceof BinaryOperation) {
+                    BinaryOperation binaryOperation = (BinaryOperation) newOperation;
+                    if (statement instanceof BinaryStatement) {
+                        ((BinaryStatement) statement).setOperation(binaryOperation);
+                    }
+                    statementString.setValue(statement.prepareStatement());
+                }
+                if (newOperation instanceof UnaryOperation) {
+                    statement = new UnaryStatement(((BinaryStatement) statement).getFirstOperand(), ((UnaryOperation) newOperation));
+                    evaluate();
+                }
+            } else {
+                evaluate();
+                addNewOperation(type);
+            }
+        }
     }
     
     private void addNewOperation(OperationType type) {
@@ -67,34 +95,36 @@ public class Calculator {
             BinaryStatement binaryStatement = (BinaryStatement) statement;
             BinaryOperation operation = binaryStatement.getOperation();
             if (operation instanceof Percentage) {
-                operandBuilder.setNumber(((Percentage) operation).toPercentage(binaryStatement.getFirstOperand(), operandBuilder.getOperandDouble()));
+                operandBuilder.setValue(((Percentage) operation).toPercentage(binaryStatement.getFirstOperand(), operandBuilder.getOperandDouble()));
             }
             evaluate();
         }
     }
     
-    public void setOperation(OperationType type) {
-        if (statement == null) {
-            addNewOperation(type);
-        } else {
-            if (operandBuilder.isNewValue()) {
-                Operation newOperation = OperationType.createOperation(type);
-                if (newOperation instanceof BinaryOperation) {
-                    BinaryOperation binaryOperation = (BinaryOperation) newOperation;
-                    if (statement instanceof BinaryStatement) {
-                        ((BinaryStatement) statement).setOperation(binaryOperation);
-                    }
-                    statementString.setValue(statement.prepareStatement());
-                }
-                if (newOperation instanceof UnaryOperation) {
-                    statement = new UnaryStatement(((BinaryStatement) statement).getFirstOperand(), ((UnaryOperation) newOperation));
-                    evaluate();
-                }
-            } else {
-                evaluate();
-                addNewOperation(type);
-            }
+    public void clear() {
+        statementString.setValue("");
+        operandBuilder.clear();
+        statement = null;
+    }
+    
+    public void setNumber(double number) {
+        operandBuilder.setValue(number);
+    }
+    
+    public void addNumber(String number) {
+        operandBuilder.addNumber(number);
+    }
+    
+    public void addPoint() {
+        operandBuilder.addPoint();
+    }
+    
+    public void deleteLastChar() {
+        if (operandBuilder.getOperandDouble() == null) {
+            clear();
+            return;
         }
+        operandBuilder.deleteLastChar();
     }
     
     public StringProperty getOperandStringProperty() {
@@ -103,12 +133,6 @@ public class Calculator {
     
     public StringProperty getStatementStringProperty() {
         return statementString;
-    }
-    
-    public void clear() {
-        statementString.setValue("");
-        operandBuilder.clear();
-        statement = null;
     }
     
     public void setOnEvaluateAction(Consumer<CalculationResult> onEvaluateAction) {
@@ -121,21 +145,5 @@ public class Calculator {
     
     String getCurrentStatementString() {
         return statementString.getValue();
-    }
-    
-    public void setNumber(double number) {
-        operandBuilder.setNumber(number);
-    }
-    
-    public void addNumber(String number) {
-        operandBuilder.addNumber(number);
-    }
-    
-    public void addPoint() {
-        operandBuilder.addPoint();
-    }
-    
-    public void deleteLastChar() {
-        operandBuilder.deleteLastChar();
     }
 }

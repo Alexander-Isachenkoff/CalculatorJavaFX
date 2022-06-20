@@ -17,10 +17,6 @@ public class OperandBuilder {
         operand.setValue(DEFAULT);
     }
     
-    void setNumber(double number) {
-        operand.setValue(FormatUtil.format(number));
-    }
-    
     void addNumber(String number) {
         if (newValue || operand.getValue().equals(DEFAULT)) {
             operand.setValue(number);
@@ -52,16 +48,16 @@ public class OperandBuilder {
         return operand;
     }
     
-    void setValue(double value) {
+    void setValue(Double value) {
         operand.setValue(FormatUtil.format(value));
     }
     
-    double getOperandDouble() {
+    Double getOperandDouble() {
         try {
             return FormatUtil.parse(operand.getValue());
         } catch (ParseException e) {
             e.printStackTrace();
-            return 0;
+            return null;
         }
     }
     

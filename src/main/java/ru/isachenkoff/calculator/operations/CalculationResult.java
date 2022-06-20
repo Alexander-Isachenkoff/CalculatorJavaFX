@@ -11,22 +11,26 @@ public class CalculationResult {
     @Column(name = "id", nullable = false)
     private Long id;
     
-    private double result;
+    private Double result;
     private String statement;
+    
+    public CalculationResult() {}
+    
+    public CalculationResult(Double result, String statement) {
+        this.result = (result != null && Double.isNaN(result)) ? null : result;
+        this.statement = statement;
+    }
     
     public Long getId() {return id;}
     
     public void setId(Long id) {this.id = id;}
     
-    public CalculationResult() {}
-    
-    public CalculationResult(double result, String statement) {
-        this.result = result;
-        this.statement = statement;
+    public Double getResult() {
+        return result;
     }
     
-    public double getResult() {
-        return result;
+    public void setResult(Double result) {
+        this.result = result;
     }
     
     public String getFormattedResult() {
@@ -39,10 +43,6 @@ public class CalculationResult {
     
     public void setStatement(String statement) {
         this.statement = statement;
-    }
-    
-    public void setResult(double result) {
-        this.result = result;
     }
     
     @Override

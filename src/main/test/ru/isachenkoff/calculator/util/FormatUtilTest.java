@@ -2,7 +2,7 @@ package ru.isachenkoff.calculator.util;
 
 import org.junit.jupiter.api.Test;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 class FormatUtilTest {
     
@@ -16,5 +16,10 @@ class FormatUtilTest {
     void formatNaN() {
         double sqrt = Math.sqrt(-1);
         assertEquals("не число", FormatUtil.format(sqrt));
+    }
+    
+    @Test
+    void format_null() {
+        assertEquals("не число", FormatUtil.format(null));
     }
 }
