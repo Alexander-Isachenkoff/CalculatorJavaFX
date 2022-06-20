@@ -1,2 +1,2 @@
 # CalculatorJavaFX
-![image](https://user-images.githubusercontent.com/43242004/172450910-262e512d-c2fc-48b8-bef0-3eef234a90f7.png)
+![image](https://user-images.githubusercontent.com/43242004/174616051-df8794f5-c515-4ff8-940a-7d580bf6443d.png)
