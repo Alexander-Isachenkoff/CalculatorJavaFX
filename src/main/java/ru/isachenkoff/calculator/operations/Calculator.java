@@ -56,6 +56,10 @@ public class Calculator {
                     }
                     statementString.setValue(statement.prepareStatement());
                 }
+                if (newOperation instanceof UnaryOperation) {
+                    statement = new UnaryStatement(((BinaryStatement) statement).getFirstOperand(), ((UnaryOperation) newOperation));
+                    evaluate();
+                }
             } else {
                 evaluate();
                 addNewOperation(type);
