@@ -1,6 +1,5 @@
 package ru.isachenkoff.calculator.operations;
 
-import java.util.Optional;
 import java.util.function.Supplier;
 
 public enum OperationType {
@@ -25,8 +24,8 @@ public enum OperationType {
     
     private final Supplier<Operation> operationSupplier;
     
-    public static Optional<Operation> createOperation(OperationType type) {
-        return Optional.of(type.operationSupplier.get());
+    public static Operation createOperation(OperationType type) {
+        return type.operationSupplier.get();
     }
     
 }

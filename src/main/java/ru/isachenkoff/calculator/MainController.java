@@ -12,7 +12,6 @@ import ru.isachenkoff.calculator.operations.*;
 
 import java.net.URL;
 import java.util.List;
-import java.util.Optional;
 import java.util.ResourceBundle;
 
 public class MainController implements Initializable {
@@ -35,10 +34,11 @@ public class MainController implements Initializable {
     private TextField inputField;
     
     private final OperandBuilder operandBuilder = new OperandBuilder();
-    private Operation operation;
+    
     private final ObservableList<CalculationResult> log = FXCollections.observableArrayList();
     private static final int MAX_LOG_SIZE = 10;
     private final CalculationResultDAO dao = new CalculationResultDAO();
+    private final Calculator calculator = new Calculator();
     
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
@@ -70,7 +70,7 @@ public class MainController implements Initializable {
         Button button = (Button) mouseEvent.getSource();
         String text = button.getText();
         operandBuilder.addNumber(text);
-        if (operation == null) {
+        if (calculator.getStatement() == null) {
             statementField.clear();
         }
     }
@@ -167,8 +167,8 @@ public class MainController implements Initializable {
     
     @FXML
     private void onEquals() {
-        if (operation != null) {
-            evaluate();
+        if (calculator.getStatement() != null) {
+            calculator.evaluate(this::logCalcResult, operandBuilder, statementField);
         }
     }
     
@@ -176,59 +176,28 @@ public class MainController implements Initializable {
     private void onClear() {
         statementField.clear();
         operandBuilder.clear();
-        operation = null;
+        calculator.setStatement(null);
     }
     
     private void onOperation(OperationType type) {
-        if (operation == null) {
-            addNewOperation(type);
+        if (calculator.getStatement() == null) {
+            calculator.addNewOperation(type, this::logCalcResult, operandBuilder, statementField);
         } else {
             if (operandBuilder.isNewValue()) {
-                Optional<Operation> optionalOperation = OperationType.createOperation(type);
-                if (optionalOperation.isPresent()) {
-                    if (optionalOperation.get() instanceof BinaryOperation) {
-                        BinaryOperation binaryOperation = (BinaryOperation) optionalOperation.get();
-                        binaryOperation.setFirstOperand(((BinaryOperation) this.operation).getFirstOperand());
-                        statementField.setText(binaryOperation.prepareStatement());
-                        this.operation = binaryOperation;
+                Operation newOperation = OperationType.createOperation(type);
+                if (newOperation instanceof BinaryOperation) {
+                    BinaryOperation binaryOperation = (BinaryOperation) newOperation;
+                    Statement statement = calculator.getStatement();
+                    if (statement instanceof BinaryStatement) {
+                        ((BinaryStatement) statement).setOperation(binaryOperation);
                     }
+                    statementField.setText(statement.prepareStatement());
                 }
             } else {
-                evaluate();
-                addNewOperation(type);
+                calculator.evaluate(this::logCalcResult, operandBuilder, statementField);
+                calculator.addNewOperation(type, this::logCalcResult, operandBuilder, statementField);
             }
         }
-    }
-    
-    private void addNewOperation(OperationType type) {
-        Optional<Operation> optionalOperation = OperationType.createOperation(type);
-        if (optionalOperation.isPresent()) {
-            operation = optionalOperation.get();
-            if (operation instanceof BinaryOperation) {
-                BinaryOperation binaryOperation = (BinaryOperation) operation;
-                binaryOperation.setFirstOperand(operandBuilder.getOperandDouble());
-                statementField.setText(binaryOperation.prepareStatement());
-                operandBuilder.setNewValue();
-            }
-            if (operation instanceof UnaryOperation) {
-                UnaryOperation unaryOperation = (UnaryOperation) operation;
-                unaryOperation.setOperand(operandBuilder.getOperandDouble());
-                evaluate();
-            }
-        }
-    }
-    
-    private void evaluate() {
-        if (operation instanceof BinaryOperation) {
-            BinaryOperation binaryOperation = (BinaryOperation) operation;
-            binaryOperation.setSecondOperand(operandBuilder.getOperandDouble());
-        }
-        CalculationResult result = operation.calc();
-        statementField.setText(result.getStatement());
-        operandBuilder.setValue(result.getResult());
-        operandBuilder.setNewValue();
-        operation = null;
-        logCalcResult(result);
     }
     
     private void logCalcResult(CalculationResult result) {

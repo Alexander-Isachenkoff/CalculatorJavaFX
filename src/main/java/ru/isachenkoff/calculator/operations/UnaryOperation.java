@@ -1,10 +1,7 @@
 package ru.isachenkoff.calculator.operations;
 
-import ru.isachenkoff.calculator.util.FormatUtil;
-
 public abstract class UnaryOperation extends AbstractOperation {
     
-    private double operand;
     private final boolean needParentheses;
     
     public UnaryOperation(String sign) {
@@ -16,38 +13,13 @@ public abstract class UnaryOperation extends AbstractOperation {
         this.needParentheses = needParentheses;
     }
     
-    @Override
-    public String prepareStatement() {
-        String statement = "";
-        String operandPart = FormatUtil.format(operand);
-        if (needParentheses) {
-            operandPart = "(" + operandPart + ")";
-        }
-        switch (getSignPlace()) {
-            case BEFORE:
-                statement = getSign() + operandPart;
-                break;
-            case AFTER:
-                statement = operandPart + getSign();
-                break;
-        }
-        return statement + " = ";
-    }
-    
-    @Override
-    public CalculationResult calc() {
-        double result = apply(operand);
-        String statement = prepareStatement();
-        return new CalculationResult(result, statement);
-    }
-    
     abstract double apply(double operand);
     
-    public void setOperand(double operand) {
-        this.operand = operand;
-    }
-    
     abstract SignPlace getSignPlace();
+    
+    public boolean isNeedParentheses() {
+        return needParentheses;
+    }
     
     enum SignPlace {
         BEFORE, AFTER

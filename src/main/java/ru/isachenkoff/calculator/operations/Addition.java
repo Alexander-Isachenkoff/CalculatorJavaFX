@@ -1,5 +1,6 @@
 package ru.isachenkoff.calculator.operations;
 
+
 public class Addition extends BinaryOperation {
     
     public Addition() {
@@ -7,12 +8,8 @@ public class Addition extends BinaryOperation {
     }
     
     @Override
-    double apply(double firstOperand, double secondOperand) {
+    public double apply(double firstOperand, double secondOperand) {
         return firstOperand + secondOperand;
     }
     
-    @Override
-    public String getSign() {
-        return "+";
-    }
 }

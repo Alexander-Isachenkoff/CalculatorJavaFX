@@ -7,7 +7,7 @@ public class Product extends BinaryOperation {
     }
     
     @Override
-    double apply(double firstOperand, double secondOperand) {
+    public double apply(double firstOperand, double secondOperand) {
         return firstOperand * secondOperand;
     }
     
