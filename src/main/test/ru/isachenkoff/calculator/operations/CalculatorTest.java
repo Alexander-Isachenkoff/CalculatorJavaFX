@@ -8,19 +8,17 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 class CalculatorTest {
     
     private Calculator calculator;
-    private OperandBuilder operandBuilder;
     
     @BeforeEach
     void setUp() {
         calculator = new Calculator();
-        operandBuilder = calculator.getOperandBuilder();
     }
     
     @Test
     void test_simpleBinary() {
-        operandBuilder.addNumber("5");
+        calculator.addNumber("5");
         calculator.setOperation(OperationType.ADDITION);
-        operandBuilder.addNumber("1");
+        calculator.addNumber("1");
         calculator.evaluate();
         
         assertEquals("5 + 1 = ", calculator.getCurrentStatementString());
@@ -29,7 +27,7 @@ class CalculatorTest {
     
     @Test
     void test_simpleUnary() {
-        operandBuilder.addNumber("5");
+        calculator.addNumber("5");
         calculator.setOperation(OperationType.SQUARE);
         
         assertEquals("5² = ", calculator.getCurrentStatementString());
@@ -38,14 +36,14 @@ class CalculatorTest {
     
     @Test
     void test_addOperation() {
-        operandBuilder.addNumber("5");
+        calculator.addNumber("5");
         calculator.setOperation(OperationType.SUBTRACTION);
-        
+    
         assertEquals("5 - ", calculator.getCurrentStatementString());
         assertEquals("5", calculator.getCurrentOperandValue());
-        
-        operandBuilder.addNumber("1");
-        operandBuilder.addNumber("2");
+    
+        calculator.addNumber("1");
+        calculator.addNumber("2");
     
         assertEquals("12", calculator.getCurrentOperandValue());
     
@@ -57,7 +55,7 @@ class CalculatorTest {
     
     @Test
     void test_changeOperation_clear() {
-        operandBuilder.addNumber("5");
+        calculator.addNumber("5");
         calculator.setOperation(OperationType.DIVISION);
         
         assertEquals("5 ÷ ", calculator.getCurrentStatementString());
@@ -80,16 +78,36 @@ class CalculatorTest {
     
     @Test
     void test_changeOperationOnUnary() {
-        operandBuilder.addNumber("2");
-        operandBuilder.addNumber("5");
+        calculator.addNumber("2");
+        calculator.addNumber("5");
         calculator.setOperation(OperationType.SUBTRACTION);
-        
+    
         assertEquals("25 - ", calculator.getCurrentStatementString());
         assertEquals("25", calculator.getCurrentOperandValue());
-        
+    
         calculator.setOperation(OperationType.SQRT);
-        
+    
         assertEquals("√25 = ", calculator.getCurrentStatementString());
         assertEquals("5", calculator.getCurrentOperandValue());
+    }
+    
+    @Test
+    void test_checkStatementCLearAfterEvaluateAndNewInput() {
+        calculator.addNumber("10");
+        calculator.setOperation(OperationType.DIVISION);
+        calculator.addNumber("2");
+        
+        assertEquals("10 ÷ ", calculator.getCurrentStatementString());
+        assertEquals("2", calculator.getCurrentOperandValue());
+        
+        calculator.evaluate();
+        
+        assertEquals("10 ÷ 2 = ", calculator.getCurrentStatementString());
+        assertEquals("5", calculator.getCurrentOperandValue());
+        
+        calculator.addNumber("1");
+        
+        assertEquals("", calculator.getCurrentStatementString());
+        assertEquals("1", calculator.getCurrentOperandValue());
     }
 }

@@ -93,17 +93,17 @@ public class MainController implements Initializable {
     private void onNumberPressed(ActionEvent mouseEvent) {
         Button button = (Button) mouseEvent.getSource();
         String text = button.getText();
-        calculator.getOperandBuilder().addNumber(text);
+        calculator.addNumber(text);
     }
     
     @FXML
     private void onPointPressed() {
-        calculator.getOperandBuilder().addPoint();
+        calculator.addPoint();
     }
     
     @FXML
     private void onDeleteLast() {
-        calculator.getOperandBuilder().deleteLastChar();
+        calculator.deleteLastChar();
     }
     
     @FXML
@@ -173,7 +173,7 @@ public class MainController implements Initializable {
     
     @FXML
     private void onPercent() {
-    
+        calculator.percent();
     }
     
     private void onOperation(OperationType operationType) {
@@ -182,12 +182,12 @@ public class MainController implements Initializable {
     
     @FXML
     private void onPi() {
-        calculator.getOperandBuilder().setNumber(Math.PI);
+        calculator.setNumber(Math.PI);
     }
     
     @FXML
     private void onE() {
-        calculator.getOperandBuilder().setNumber(Math.E);
+        calculator.setNumber(Math.E);
     }
     
     @FXML

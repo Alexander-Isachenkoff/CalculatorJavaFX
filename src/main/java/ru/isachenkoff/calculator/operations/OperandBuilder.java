@@ -17,11 +17,11 @@ public class OperandBuilder {
         operand.setValue(DEFAULT);
     }
     
-    public void setNumber(double number) {
+    void setNumber(double number) {
         operand.setValue(FormatUtil.format(number));
     }
     
-    public void addNumber(String number) {
+    void addNumber(String number) {
         if (newValue || operand.getValue().equals(DEFAULT)) {
             operand.setValue(number);
         } else {
@@ -30,13 +30,13 @@ public class OperandBuilder {
         newValue = false;
     }
     
-    public void addPoint() {
+    void addPoint() {
         if (!newValue && !operand.getValue().contains(POINT)) {
             operand.setValue(operand.getValue() + POINT);
         }
     }
     
-    public void deleteLastChar() {
+    void deleteLastChar() {
         if (newValue) {
             return;
         }
@@ -48,15 +48,15 @@ public class OperandBuilder {
         }
     }
     
-    public StringProperty getOperand() {
+    StringProperty getOperand() {
         return operand;
     }
     
-    public void setValue(double value) {
+    void setValue(double value) {
         operand.setValue(FormatUtil.format(value));
     }
     
-    public double getOperandDouble() {
+    double getOperandDouble() {
         try {
             return FormatUtil.parse(operand.getValue());
         } catch (ParseException e) {
@@ -65,11 +65,11 @@ public class OperandBuilder {
         }
     }
     
-    public void setNewValue() {
+    void setNewValue() {
         newValue = true;
     }
     
-    public boolean isNewValue() {
+    boolean isNewValue() {
         return newValue;
     }
 }

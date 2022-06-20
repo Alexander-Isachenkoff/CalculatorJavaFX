@@ -13,6 +13,14 @@ public class Calculator {
     private Consumer<CalculationResult> onEvaluateAction = result -> {};
     private Unit unit = Unit.DEG;
     
+    public Calculator() {
+        operandBuilder.getOperand().addListener((observable, oldValue, newValue) -> {
+            if (statement == null) {
+                statementString.setValue("");
+            }
+        });
+    }
+    
     public void setUnit(Unit unit) {
         this.unit = unit;
     }
@@ -54,6 +62,14 @@ public class Calculator {
         onEvaluateAction.accept(result);
     }
     
+    public void percent() {
+        if (statement instanceof BinaryStatement) {
+            BinaryStatement binaryStatement = (BinaryStatement) statement;
+            operandBuilder.setNumber(operandBuilder.getOperandDouble() / 100.0 * binaryStatement.getFirstOperand());
+            evaluate();
+        }
+    }
+    
     public void setOperation(OperationType type) {
         if (statement == null) {
             addNewOperation(type);
@@ -76,10 +92,6 @@ public class Calculator {
                 addNewOperation(type);
             }
         }
-    }
-    
-    public OperandBuilder getOperandBuilder() {
-        return operandBuilder;
     }
     
     public StringProperty getOperandStringProperty() {
@@ -106,5 +118,21 @@ public class Calculator {
     
     String getCurrentStatementString() {
         return statementString.getValue();
+    }
+    
+    public void setNumber(double number) {
+        operandBuilder.setNumber(number);
+    }
+    
+    public void addNumber(String number) {
+        operandBuilder.addNumber(number);
+    }
+    
+    public void addPoint() {
+        operandBuilder.addPoint();
+    }
+    
+    public void deleteLastChar() {
+        operandBuilder.deleteLastChar();
     }
 }
