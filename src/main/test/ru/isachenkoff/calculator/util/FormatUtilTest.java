@@ -9,7 +9,7 @@ class FormatUtilTest {
     @Test
     void format() {
         double sqrt = Math.sqrt(2.5);
-        assertEquals("1,581138830084", FormatUtil.format(sqrt));
+        assertEquals("1,58113883008419", FormatUtil.format(sqrt));
     }
     
     @Test
