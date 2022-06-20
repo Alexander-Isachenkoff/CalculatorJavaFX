@@ -1,5 +1,7 @@
 package ru.isachenkoff.calculator.operations;
 
+import ru.isachenkoff.calculator.util.FormatUtil;
+
 public abstract class UnaryOperation extends AbstractOperation {
     
     private double operand;
@@ -17,7 +19,7 @@ public abstract class UnaryOperation extends AbstractOperation {
     @Override
     public String prepareStatement() {
         String statement = "";
-        String operandPart = format(operand);
+        String operandPart = FormatUtil.format(operand);
         if (needParentheses) {
             operandPart = "(" + operandPart + ")";
         }

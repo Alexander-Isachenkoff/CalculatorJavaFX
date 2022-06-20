@@ -1,18 +1,11 @@
 package ru.isachenkoff.calculator.operations;
 
-import java.text.DecimalFormat;
-
 public abstract class AbstractOperation implements Operation {
     
-    private String sign;
-    public final static DecimalFormat DECIMAL_FORMAT = new DecimalFormat("#.############");
+    private final String sign;
     
     public AbstractOperation(String sign) {
         this.sign = sign;
-    }
-    
-    public static String format(double value) {
-        return DECIMAL_FORMAT.format(value);
     }
     
     @Override

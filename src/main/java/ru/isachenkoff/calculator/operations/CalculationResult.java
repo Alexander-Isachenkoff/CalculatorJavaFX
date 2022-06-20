@@ -1,5 +1,7 @@
 package ru.isachenkoff.calculator.operations;
 
+import ru.isachenkoff.calculator.util.FormatUtil;
+
 import javax.persistence.*;
 
 @Entity
@@ -28,7 +30,7 @@ public class CalculationResult {
     }
     
     public String getFormattedResult() {
-        return AbstractOperation.format(result);
+        return FormatUtil.format(result);
     }
     
     public String getStatement() {
@@ -45,6 +47,6 @@ public class CalculationResult {
     
     @Override
     public String toString() {
-        return statement + AbstractOperation.format(result);
+        return statement + FormatUtil.format(result);
     }
 }

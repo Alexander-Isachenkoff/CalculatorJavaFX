@@ -1,6 +1,6 @@
 package ru.isachenkoff.calculator.operations;
 
-import java.util.function.BinaryOperator;
+import ru.isachenkoff.calculator.util.FormatUtil;
 
 public abstract class BinaryOperation extends AbstractOperation {
     
@@ -19,9 +19,9 @@ public abstract class BinaryOperation extends AbstractOperation {
     
     @Override
     public String prepareStatement() {
-        String statement = format(firstOperand) + " " + getSign() + " ";
+        String statement = FormatUtil.format(firstOperand) + " " + getSign() + " ";
         if (hasSecondOperand()) {
-            statement += format(secondOperand) + " = ";
+            statement += FormatUtil.format(secondOperand) + " = ";
         }
         return statement;
     }

@@ -2,7 +2,7 @@ package ru.isachenkoff.calculator;
 
 import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
-import ru.isachenkoff.calculator.operations.AbstractOperation;
+import ru.isachenkoff.calculator.util.FormatUtil;
 
 import java.text.ParseException;
 
@@ -49,12 +49,12 @@ public class OperandBuilder {
     }
     
     public void setValue(double value) {
-        operand.setValue(AbstractOperation.format(value));
+        operand.setValue(FormatUtil.format(value));
     }
     
     public double getOperandDouble() {
         try {
-            return AbstractOperation.DECIMAL_FORMAT.parse(operand.getValue()).doubleValue();
+            return FormatUtil.parse(operand.getValue());
         } catch (ParseException e) {
             e.printStackTrace();
             return 0;
