@@ -18,6 +18,10 @@ class BinaryStatement implements Statement {
         this.operation = operation;
     }
     
+    public BinaryOperation getOperation() {
+        return operation;
+    }
+    
     @Override
     public String prepareStatement() {
         String statement = FormatUtil.format(firstOperand) + " " + operation.getSign() + " ";

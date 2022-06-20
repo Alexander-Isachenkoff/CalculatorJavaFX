@@ -1,6 +1,6 @@
 package ru.isachenkoff.calculator.operations;
 
-class Subtraction extends BinaryOperation {
+class Subtraction extends BinaryOperation implements Percentage {
     
     Subtraction() {
         super("-");
@@ -9,6 +9,11 @@ class Subtraction extends BinaryOperation {
     @Override
     double apply(double firstOperand, double secondOperand) {
         return firstOperand - secondOperand;
+    }
+    
+    @Override
+    public double toPercentage(double first, double second) {
+        return first * (second / 100);
     }
     
 }

@@ -1,6 +1,6 @@
 package ru.isachenkoff.calculator.operations;
 
-class Product extends BinaryOperation {
+class Product extends BinaryOperation implements Percentage {
     
     Product() {
         super("×");
@@ -11,4 +11,8 @@ class Product extends BinaryOperation {
         return firstOperand * secondOperand;
     }
     
+    @Override
+    public double toPercentage(double first, double second) {
+        return second / 100;
+    }
 }

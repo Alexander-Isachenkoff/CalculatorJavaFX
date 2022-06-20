@@ -65,7 +65,10 @@ public class Calculator {
     public void percent() {
         if (statement instanceof BinaryStatement) {
             BinaryStatement binaryStatement = (BinaryStatement) statement;
-            operandBuilder.setNumber(operandBuilder.getOperandDouble() / 100.0 * binaryStatement.getFirstOperand());
+            BinaryOperation operation = binaryStatement.getOperation();
+            if (operation instanceof Percentage) {
+                operandBuilder.setNumber(((Percentage) operation).toPercentage(binaryStatement.getFirstOperand(), operandBuilder.getOperandDouble()));
+            }
             evaluate();
         }
     }
