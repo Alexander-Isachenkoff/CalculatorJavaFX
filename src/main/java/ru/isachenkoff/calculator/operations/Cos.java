@@ -1,18 +1,14 @@
 package ru.isachenkoff.calculator.operations;
 
-class Cos extends UnaryOperation {
+class Cos extends TrigonometricalFunction {
     
     Cos() {
-        super("cos", true);
+        super("cos");
     }
     
     @Override
-    double apply(double operand) {
+    double applyInternal(double operand) {
         return Math.cos(operand);
     }
     
-    @Override
-    SignPlace getSignPlace() {
-        return SignPlace.BEFORE;
-    }
 }

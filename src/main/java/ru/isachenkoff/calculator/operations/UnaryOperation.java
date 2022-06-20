@@ -17,7 +17,7 @@ abstract class UnaryOperation extends AbstractOperation {
     
     abstract SignPlace getSignPlace();
     
-    boolean isNeedParentheses() {
+    boolean needParentheses() {
         return needParentheses;
     }
     

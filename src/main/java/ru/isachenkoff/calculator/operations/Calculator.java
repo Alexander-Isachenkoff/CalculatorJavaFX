@@ -11,6 +11,11 @@ public class Calculator {
     private final OperandBuilder operandBuilder = new OperandBuilder();
     private final StringProperty statementString = new SimpleStringProperty();
     private Consumer<CalculationResult> onEvaluateAction = result -> {};
+    private Unit unit = Unit.DEG;
+    
+    public void setUnit(Unit unit) {
+        this.unit = unit;
+    }
     
     private void addNewOperation(OperationType type) {
         Operation newOperation = OperationType.createOperation(type);
@@ -34,6 +39,12 @@ public class Calculator {
         if (statement instanceof BinaryStatement) {
             BinaryStatement binaryStatement = (BinaryStatement) statement;
             binaryStatement.setSecondOperand(operandBuilder.getOperandDouble());
+        }
+        if (statement instanceof UnaryStatement) {
+            UnaryOperation operation = ((UnaryStatement) statement).getOperation();
+            if (operation instanceof TrigonometricalFunction) {
+                ((TrigonometricalFunction) operation).setUnit(unit);
+            }
         }
         CalculationResult result = statement.calc();
         statementString.setValue(result.getStatement());

@@ -16,7 +16,7 @@ class UnaryStatement implements Statement {
     public String prepareStatement() {
         String statement = "";
         String operandPart = FormatUtil.format(operand);
-        if (operation.isNeedParentheses()) {
+        if (operation.needParentheses()) {
             operandPart = "(" + operandPart + ")";
         }
         switch (operation.getSignPlace()) {
@@ -44,5 +44,9 @@ class UnaryStatement implements Statement {
     
     void setOperation(UnaryOperation operation) {
         this.operation = operation;
+    }
+    
+    public UnaryOperation getOperation() {
+        return operation;
     }
 }

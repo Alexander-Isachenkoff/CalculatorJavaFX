@@ -1,18 +1,14 @@
 package ru.isachenkoff.calculator.operations;
 
-class Tan extends UnaryOperation {
+class Tan extends TrigonometricalFunction {
     
     Tan() {
-        super("tan", true);
+        super("tan");
     }
     
     @Override
-    double apply(double operand) {
+    double applyInternal(double operand) {
         return Math.tan(operand);
     }
     
-    @Override
-    SignPlace getSignPlace() {
-        return SignPlace.BEFORE;
-    }
 }

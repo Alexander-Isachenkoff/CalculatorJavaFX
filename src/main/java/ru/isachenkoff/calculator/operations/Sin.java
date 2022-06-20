@@ -1,19 +1,14 @@
 package ru.isachenkoff.calculator.operations;
 
-class Sin extends UnaryOperation {
+class Sin extends TrigonometricalFunction {
     
     Sin() {
-        super("sin", true);
+        super("sin");
     }
     
     @Override
-    double apply(double operand) {
+    double applyInternal(double operand) {
         return Math.sin(operand);
-    }
-    
-    @Override
-    SignPlace getSignPlace() {
-        return SignPlace.BEFORE;
     }
     
 }

@@ -11,6 +11,7 @@ import ru.isachenkoff.calculator.data.CalculationResultDAO;
 import ru.isachenkoff.calculator.operations.CalculationResult;
 import ru.isachenkoff.calculator.operations.Calculator;
 import ru.isachenkoff.calculator.operations.OperationType;
+import ru.isachenkoff.calculator.operations.Unit;
 
 import java.net.URL;
 import java.util.List;
@@ -56,6 +57,12 @@ public class MainController implements Initializable {
         toggleGroup.selectedToggleProperty().addListener((observable, oldValue, newValue) -> {
             for (Toggle toggle : toggleGroup.getToggles()) {
                 ((ToggleButton) toggle).setDisable(toggle == newValue);
+            }
+            if (radButton.isSelected()) {
+                calculator.setUnit(Unit.RAD);
+            }
+            if (degButton.isSelected()) {
+                calculator.setUnit(Unit.DEG);
             }
         });
         degButton.setSelected(true);
