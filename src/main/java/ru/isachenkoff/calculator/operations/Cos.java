@@ -1,8 +1,8 @@
 package ru.isachenkoff.calculator.operations;
 
-public class Cos extends UnaryOperation {
+class Cos extends UnaryOperation {
     
-    public Cos() {
+    Cos() {
         super("cos", true);
     }
     

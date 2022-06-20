@@ -1,19 +1,18 @@
 package ru.isachenkoff.calculator.operations;
 
-import ru.isachenkoff.calculator.Statement;
 import ru.isachenkoff.calculator.util.FormatUtil;
 
-public class BinaryStatement implements Statement {
+class BinaryStatement implements Statement {
     
     private Double firstOperand;
     private Double secondOperand;
     private BinaryOperation operation;
     
-    public BinaryStatement(BinaryOperation operation) {
+    BinaryStatement(BinaryOperation operation) {
         this(null, null, operation);
     }
     
-    public BinaryStatement(Double firstOperand, Double secondOperand, BinaryOperation operation) {
+    private BinaryStatement(Double firstOperand, Double secondOperand, BinaryOperation operation) {
         this.firstOperand = firstOperand;
         this.secondOperand = secondOperand;
         this.operation = operation;
@@ -35,27 +34,27 @@ public class BinaryStatement implements Statement {
         return new CalculationResult(result, statement);
     }
     
-    public boolean hasSecondOperand() {
+    private boolean hasSecondOperand() {
         return secondOperand != null;
     }
     
-    public void setFirstOperand(Double firstOperand) {
+    void setFirstOperand(Double firstOperand) {
         this.firstOperand = firstOperand;
     }
     
-    public Double getFirstOperand() {
+    Double getFirstOperand() {
         return firstOperand;
     }
     
-    public Double getSecondOperand() {
+    Double getSecondOperand() {
         return secondOperand;
     }
     
-    public void setSecondOperand(Double secondOperand) {
+    void setSecondOperand(Double secondOperand) {
         this.secondOperand = secondOperand;
     }
     
-    public void setOperation(BinaryOperation operation) {
+    void setOperation(BinaryOperation operation) {
         this.operation = operation;
     }
 }

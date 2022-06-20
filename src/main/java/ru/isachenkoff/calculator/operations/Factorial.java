@@ -1,8 +1,8 @@
 package ru.isachenkoff.calculator.operations;
 
-public class Factorial extends UnaryOperation {
+class Factorial extends UnaryOperation {
     
-    public Factorial() {
+    Factorial() {
         super("!");
     }
     

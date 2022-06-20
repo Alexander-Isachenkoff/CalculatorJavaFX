@@ -1,8 +1,8 @@
 package ru.isachenkoff.calculator.operations;
 
-public class Square extends UnaryOperation {
+class Square extends UnaryOperation {
     
-    public Square() {
+    Square() {
         super("²");
     }
     

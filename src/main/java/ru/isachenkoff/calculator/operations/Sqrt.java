@@ -1,8 +1,8 @@
 package ru.isachenkoff.calculator.operations;
 
-public class Sqrt extends UnaryOperation {
+class Sqrt extends UnaryOperation {
     
-    public Sqrt() {
+    Sqrt() {
         super("√");
     }
     

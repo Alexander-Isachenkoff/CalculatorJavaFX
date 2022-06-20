@@ -1,4 +1,4 @@
-package ru.isachenkoff.calculator;
+package ru.isachenkoff.calculator.operations;
 
 import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
@@ -13,7 +13,7 @@ public class OperandBuilder {
     private final static String POINT = ",";
     private boolean newValue;
     
-    public void clear() {
+    void clear() {
         operand.setValue(DEFAULT);
     }
     

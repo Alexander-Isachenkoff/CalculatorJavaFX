@@ -1,8 +1,8 @@
 package ru.isachenkoff.calculator.operations;
 
-public class Log10 extends UnaryOperation {
+class Log10 extends UnaryOperation {
     
-    public Log10() {
+    Log10() {
         super("lg", true);
     }
     

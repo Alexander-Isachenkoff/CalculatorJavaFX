@@ -1,9 +1,9 @@
 package ru.isachenkoff.calculator.operations;
 
 
-public abstract class BinaryOperation extends AbstractOperation {
+abstract class BinaryOperation extends AbstractOperation {
     
-    public BinaryOperation(String sign) {
+    BinaryOperation(String sign) {
         super(sign);
     }
     

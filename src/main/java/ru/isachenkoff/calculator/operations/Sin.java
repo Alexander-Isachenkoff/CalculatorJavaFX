@@ -1,8 +1,8 @@
 package ru.isachenkoff.calculator.operations;
 
-public class Sin extends UnaryOperation {
+class Sin extends UnaryOperation {
     
-    public Sin() {
+    Sin() {
         super("sin", true);
     }
     

@@ -1,14 +1,14 @@
 package ru.isachenkoff.calculator.operations;
 
-public abstract class UnaryOperation extends AbstractOperation {
+abstract class UnaryOperation extends AbstractOperation {
     
     private final boolean needParentheses;
     
-    public UnaryOperation(String sign) {
+    UnaryOperation(String sign) {
         this(sign, false);
     }
     
-    public UnaryOperation(String sign, boolean needParentheses) {
+    UnaryOperation(String sign, boolean needParentheses) {
         super(sign);
         this.needParentheses = needParentheses;
     }
@@ -17,7 +17,7 @@ public abstract class UnaryOperation extends AbstractOperation {
     
     abstract SignPlace getSignPlace();
     
-    public boolean isNeedParentheses() {
+    boolean isNeedParentheses() {
         return needParentheses;
     }
     

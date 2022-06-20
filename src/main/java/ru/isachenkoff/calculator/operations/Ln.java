@@ -1,17 +1,17 @@
 package ru.isachenkoff.calculator.operations;
 
-public class Ln extends UnaryOperation {
+ class Ln extends UnaryOperation {
     
-    public Ln() {
-        super("ln", true);
-    }
+     Ln() {
+         super("ln", true);
+     }
     
-    @Override
-    double apply(double operand) {
-        return Math.log(operand);
-    }
+     @Override
+     double apply(double operand) {
+         return Math.log(operand);
+     }
     
-    @Override
+     @Override
     SignPlace getSignPlace() {
         return SignPlace.BEFORE;
     }

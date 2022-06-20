@@ -1,14 +1,13 @@
 package ru.isachenkoff.calculator.operations;
 
-import ru.isachenkoff.calculator.Statement;
 import ru.isachenkoff.calculator.util.FormatUtil;
 
-public class UnaryStatement implements Statement {
+class UnaryStatement implements Statement {
     
     private double operand;
     private UnaryOperation operation;
     
-    public UnaryStatement(double operand, UnaryOperation operation) {
+    UnaryStatement(double operand, UnaryOperation operation) {
         this.operand = operand;
         this.operation = operation;
     }
@@ -38,12 +37,12 @@ public class UnaryStatement implements Statement {
         return new CalculationResult(result, statement);
     }
     
-    public void setOperand(double operand) {
+    void setOperand(double operand) {
         this.operand = operand;
     }
     
     
-    public void setOperation(UnaryOperation operation) {
+    void setOperation(UnaryOperation operation) {
         this.operation = operation;
     }
 }

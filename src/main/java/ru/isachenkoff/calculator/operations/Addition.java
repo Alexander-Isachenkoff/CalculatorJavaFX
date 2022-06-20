@@ -1,14 +1,14 @@
 package ru.isachenkoff.calculator.operations;
 
 
-public class Addition extends BinaryOperation {
+class Addition extends BinaryOperation {
     
-    public Addition() {
+    Addition() {
         super("+");
     }
     
     @Override
-    public double apply(double firstOperand, double secondOperand) {
+    double apply(double firstOperand, double secondOperand) {
         return firstOperand + secondOperand;
     }
     

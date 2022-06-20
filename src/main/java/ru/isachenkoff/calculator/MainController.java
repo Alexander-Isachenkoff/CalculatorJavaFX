@@ -8,7 +8,9 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.*;
 import javafx.scene.layout.VBox;
 import ru.isachenkoff.calculator.data.CalculationResultDAO;
-import ru.isachenkoff.calculator.operations.*;
+import ru.isachenkoff.calculator.operations.CalculationResult;
+import ru.isachenkoff.calculator.operations.Calculator;
+import ru.isachenkoff.calculator.operations.OperationType;
 
 import java.net.URL;
 import java.util.List;
@@ -33,7 +35,6 @@ public class MainController implements Initializable {
     @FXML
     private TextField inputField;
     
-    private final OperandBuilder operandBuilder = new OperandBuilder();
     
     private final ObservableList<CalculationResult> log = FXCollections.observableArrayList();
     private static final int MAX_LOG_SIZE = 10;
@@ -42,7 +43,9 @@ public class MainController implements Initializable {
     
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-        inputField.textProperty().bindBidirectional(operandBuilder.getOperand());
+        calculator.setOnEvaluateAction(this::logCalcResult);
+        inputField.textProperty().bindBidirectional(calculator.getOperandStringProperty());
+        statementField.textProperty().bindBidirectional(calculator.getStatementStringProperty());
         logList.setCellFactory(new LogListCellFactory());
         titledPane.setExpanded(false);
         logPane.setManaged(false);
@@ -69,20 +72,17 @@ public class MainController implements Initializable {
     private void onNumberPressed(ActionEvent mouseEvent) {
         Button button = (Button) mouseEvent.getSource();
         String text = button.getText();
-        operandBuilder.addNumber(text);
-        if (calculator.getStatement() == null) {
-            statementField.clear();
-        }
+        calculator.getOperandBuilder().addNumber(text);
     }
     
     @FXML
     private void onPointPressed() {
-        operandBuilder.addPoint();
+        calculator.getOperandBuilder().addPoint();
     }
     
     @FXML
     private void onDeleteLast() {
-        operandBuilder.deleteLastChar();
+        calculator.getOperandBuilder().deleteLastChar();
     }
     
     @FXML
@@ -137,22 +137,26 @@ public class MainController implements Initializable {
     
     @FXML
     private void onLn() {
-        onOperation(OperationType.LN);
+        calculator.setOperation(OperationType.LN);
     }
     
     @FXML
     private void onLog10() {
-        onOperation(OperationType.LOG);
+        calculator.setOperation(OperationType.LOG);
     }
     
     @FXML
     private void onFactorial() {
-        onOperation(OperationType.FACTORIAL);
+        calculator.setOperation(OperationType.FACTORIAL);
     }
     
     @FXML
     private void onPercent() {
     
+    }
+    
+    private void onOperation(OperationType operationType) {
+        calculator.setOperation(operationType);
     }
     
     @FXML
@@ -167,37 +171,12 @@ public class MainController implements Initializable {
     
     @FXML
     private void onEquals() {
-        if (calculator.getStatement() != null) {
-            calculator.evaluate(this::logCalcResult, operandBuilder, statementField);
-        }
+        calculator.evaluate();
     }
     
     @FXML
     private void onClear() {
-        statementField.clear();
-        operandBuilder.clear();
-        calculator.setStatement(null);
-    }
-    
-    private void onOperation(OperationType type) {
-        if (calculator.getStatement() == null) {
-            calculator.addNewOperation(type, this::logCalcResult, operandBuilder, statementField);
-        } else {
-            if (operandBuilder.isNewValue()) {
-                Operation newOperation = OperationType.createOperation(type);
-                if (newOperation instanceof BinaryOperation) {
-                    BinaryOperation binaryOperation = (BinaryOperation) newOperation;
-                    Statement statement = calculator.getStatement();
-                    if (statement instanceof BinaryStatement) {
-                        ((BinaryStatement) statement).setOperation(binaryOperation);
-                    }
-                    statementField.setText(statement.prepareStatement());
-                }
-            } else {
-                calculator.evaluate(this::logCalcResult, operandBuilder, statementField);
-                calculator.addNewOperation(type, this::logCalcResult, operandBuilder, statementField);
-            }
-        }
+        calculator.clear();
     }
     
     private void logCalcResult(CalculationResult result) {

@@ -1,8 +1,8 @@
 package ru.isachenkoff.calculator.operations;
 
-public class Tan extends UnaryOperation {
+class Tan extends UnaryOperation {
     
-    public Tan() {
+    Tan() {
         super("tan", true);
     }
     

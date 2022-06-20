@@ -1,6 +1,6 @@
 package ru.isachenkoff.calculator.operations;
 
-public class Power extends BinaryOperation {
+class Power extends BinaryOperation {
     
     Power() {
         super("^");
